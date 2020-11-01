@@ -20,11 +20,11 @@ const UserSchema = new mongoose.Schema(
     },
     PhoneNumber: {
       type: Number,
-      required: true,
+      required: false,
     },
     Address: {
       type: String,
-      required: true,
+      required: false,
     },
     Payment: {
       type: String, //(money, picpay)

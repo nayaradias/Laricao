@@ -4,14 +4,15 @@ import colors from "../global/colors";
 
 const { width } = Dimensions.get("window");
 export const Header = styled.View`
+  flex:1;
   justify-content: center;
   align-items: center;
-  align-self: center;
 
+  /* margin-top:100; */
   width: ${width + 30}px;
   height: ${width / 1.8};
-  border-bottom-left-radius: 190px;
-  border-bottom-right-radius: 190px;
+  border-top-left-radius: 190px;
+  border-top-right-radius: 190px;
   box-shadow: 8px 8px 50px ${colors.lightgray};
   background-color: ${(props) => props.backgroundColor || colors.orange};
 `;
@@ -20,12 +21,6 @@ export const Input = styled.TextInput`
   margin-left:8px;
   font-size: 13px;
   color: ${colors.gray};
-  /* &:Input:focus {
-        outline: none;
-        box-shadow: 0px 0px 2px red;
-    } */
-
-  /* background-color: ${(props) => props.backgroundColor || colors.white}; */
 `;
 export const Buttom = styled.TouchableOpacity`
   justify-content: center;
@@ -44,16 +39,18 @@ export const ContainerTile = styled.View`
   justify-content: center;
   align-items: center;
 
-  padding: 60px 0px;
-  margin-top: 62px;
+  margin-top:-160px;
+  padding:60px 0px;
+
 `;
 
 export const Form = styled.View`
+flex:2;
   justify-content: center;
   align-items: center;
 
   padding: 40px;
-  margin-top: 20%;
+  margin-top: 5%;
   width: 100%;
 `;
 export const ContainerInput = styled.View`

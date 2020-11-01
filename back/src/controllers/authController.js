@@ -11,6 +11,7 @@ const createUserToken = (UserId) => {
 
 module.exports = {
   async store(req, res) {
+    console.log(req.body);
     try {
       const user = await User.create(req.body);
       user.Password = undefined;
