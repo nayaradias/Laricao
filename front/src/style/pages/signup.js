@@ -63,7 +63,7 @@ export const ContainerInput = styled.View`
   width:100%;
   padding: 15px; 
   border-radius: 30px;
-  border: 1px solid ${colors.lightgray}
+  border: 1px solid ${colors.lightgray};
   border-radius: 30px;
   border: 1px solid ${colors.lightgray};
   box-shadow: 3px 3px 5px ${colors.lightgray};

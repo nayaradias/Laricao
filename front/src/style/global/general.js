@@ -11,13 +11,13 @@ export const Title = styled.Text`
   align-self: ${(props) => props.alignSelf || "auto"};
   text-align: ${(props) => props.textAlign || "auto"}
   font-size: ${(props) => props.fontSize || "18px"};
-  font-family: 'lobster';
+  font-family: 'roboto';
   font-weight: ${(props) => props.fontWeight || 500};
   color: ${(props) => props.color || colors.gray};
   letter-spacing: ${(props) => props.letterSpacing || 0}px;
   margin: ${(props) => props.marginTop || 0}px
     ${(props) => props.marginRight || 0}px ${(props) =>
-  props.marginBottom || 0}px
+    props.marginBottom || 0}px
     ${(props) => props.marginLeft || 0}px;
   
 `;
@@ -48,7 +48,19 @@ export const ContainerLogo = styled.View`
     ${(props) => props.marginLeft || 0}px;
 `;
 export const Logo = styled.Image`
- width: 100;
- height: 100;
- /* box-shadow: 8px 8px 50px ${colors.lightgray}; */
+ width: ${(props) => props.width || 100}px;
+ height: ${(props) => props.height || 100}px;
+
+`;
+export const IconTabBar = styled.Image`
+ width: ${(props) => props.width || 56}px;
+ height: ${(props) => props.height || 56}px;
+ margin-top:2px;
+`;
+export const IconActivy = styled.View`
+  background-color:${colors.transparent};
+  /* height:32px;
+  width:32px; */
+  padding:5px;
+  border-radius:100px;
 `;

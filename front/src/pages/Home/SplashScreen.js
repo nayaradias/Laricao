@@ -1,9 +1,31 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import colors from "../../style/global/colors";
+import {
+    Container,
+    Logo,
+    Title,
+    Text,
+} from "../../style/global/general";
+import {
+    ContainerLogo,
+    Content,
+} from "../../style/pages/splashscreen";
 
-
-const SplashScreen = () => {
-    return (<View ><Text>SplashScreen</Text></View>);
+const SplashScreen = ({navigation}) => {
+    setTimeout(() => {
+        navigation.navigate('Home')
+    }, 3000);
+    return (
+        <Container >
+            <Content>
+                <ContainerLogo>
+                    <Logo width={130} height={130} source={require("../../assets/icons/LogoIcon.svg")} />
+                </ContainerLogo>
+                <Title color={colors.orange} fontWeight="bold" fontSize={72}>Larição</Title>
+                <Text>Não deixe para amanhã o que você pode comer hoje</Text>
+            </Content>
+        </Container>
+    );
 }
 
 export default SplashScreen;
