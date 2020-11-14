@@ -52,7 +52,7 @@ const StackBarScreenOptions = {
 
 function LaricaoTabScreen() {
     return (
-        <Tab.Navigator initialRouteName="Bag"
+        <Tab.Navigator initialRouteName="Menu"
             screenOptions={TabBarScreenOptions}
             tabBarOptions={{
                 activeTintColor: colors.white,
@@ -79,10 +79,10 @@ const Routes = () => {
     return (
         <NavigationContainer>
             <Stack.Navigator>
-                <Stack.Screen options={{ headerShown: false }} name="SplashScreen" component={SplashScreen} />
+                {/* <Stack.Screen options={{ headerShown: false }} name="SplashScreen" component={SplashScreen} />
                 <Stack.Screen options={{ headerShown: false }} name="Home" component={Home} />
                 <Stack.Screen options={{ headerShown: false }} name="SignUp" component={SignUp} />
-                <Stack.Screen options={{ headerShown: false }} name="SignIn" component={SignIn} />
+                <Stack.Screen options={{ headerShown: false }} name="SignIn" component={SignIn} /> */}
                 <Stack.Screen name="Laricao" component={LaricaoTabScreen} options={StackBarScreenOptions} />
             </Stack.Navigator>
         </NavigationContainer>

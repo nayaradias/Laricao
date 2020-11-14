@@ -24,7 +24,7 @@ const Home = ({ navigation }) => {
                     <Text> Possui conta? <Text color={colors.orange}>Login</Text></Text>
                 </Link>
             </Content>
-            <Banner source={require('../../assets/images/Footer1.png')} />
+            {/* <Banner source={require('../../assets/images/Footer1.png')} /> */}
         </Container>
     );
 }

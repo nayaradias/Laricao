@@ -1,16 +1,17 @@
 import styled from "styled-components/native";
 import { Dimensions } from "react-native";
 import colors from "../global/colors";
+import metrics from '../global/mectrics';
 
 const { width } = Dimensions.get("window");
 export const Header = styled.View`
-  flex:1;
+  /* flex:0; */
   justify-content: center;
   align-items: center;
 
   /* margin-top:100; */
-  width: ${width + 30}px;
-  height: ${width / 1.8};
+  width: ${metrics.screenWidth}px;
+  /* height: ${width / 1.8}; */
   border-top-left-radius: 190px;
   border-top-right-radius: 190px;
   box-shadow: 8px 8px 50px ${colors.lightgray};
