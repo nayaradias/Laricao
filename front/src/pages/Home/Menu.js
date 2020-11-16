@@ -60,7 +60,7 @@ const Menu = () => {
 
             <Row style={{ justifyContent: "space-between" }}>
                 <Title marginLeft={20} fontWeight="bold" color={colors.grey} fontSize={16}>Explorar Categorias</Title>
-                <Text color={colors.lightgray}>Ver todos</Text>
+                <Text color={colors.lightgray} marginRight={20}>Ver todos</Text>
             </Row>
             <Row>
                 <ContainerScrollView horizontal>

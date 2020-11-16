@@ -17,7 +17,9 @@ export const ContainerInput = styled.View`
 
 export const Input = styled.TextInput`
     margin-left: 8px;
-    color:${colors.lightgray};
+    margin-right:8px;
+    color:${colors.gray};
+    width:92%;
 `;
 export const Row = styled.View`
     flex-direction:row;
