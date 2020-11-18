@@ -10,7 +10,7 @@ export const Content = styled.View`
 
 `;
 export const Banner = styled.Image`
-  flex:0.4;
+  flex:0.5;
 
   height: ${props => props.height || 150}px;
 `;
