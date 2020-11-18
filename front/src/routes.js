@@ -79,11 +79,15 @@ const Routes = () => {
     return (
         <NavigationContainer>
             <Stack.Navigator>
-                <Stack.Screen options={{ headerShown: false }} name="SplashScreen" component={SplashScreen} />
+            <Stack.Screen screenOptions={{activeTintColor: colors.orange, titleColor: colors.orange }} options={{ title: "Sacola",
+                                     titleColor: colors.orange,
+                                     alignItems: 'center'
+                                     }} name="Bag" component={Bag} />
+                {/* <Stack.Screen options={{ headerShown: false }} name="SplashScreen" component={SplashScreen} />
                 <Stack.Screen options={{ headerShown: false }} name="Home" component={Home} />
                 <Stack.Screen options={{ headerShown: false }} name="SignUp" component={SignUp} />
                 <Stack.Screen options={{ headerShown: false }} name="SignIn" component={SignIn} />
-                <Stack.Screen name="Laricao" component={LaricaoTabScreen} options={StackBarScreenOptions} />
+                <Stack.Screen name="Laricao" component={LaricaoTabScreen} options={StackBarScreenOptions} /> */}
             </Stack.Navigator>
         </NavigationContainer>
     );
