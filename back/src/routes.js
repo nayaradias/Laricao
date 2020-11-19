@@ -11,13 +11,15 @@ routes.post('/user/store', authController.store);
 routes.post('/user/login', authController.login);
 routes.post('/user/image', auth, multer.single('image'), authController.uploadImage);
 
-//Rooutes Company
+//Routes Company
 routes.post('/company/store', companyController.store);
 routes.post('/company/login', companyController.login);
+routes.get('/company/list',auth, companyController.list);
 routes.post('/company/image', auth, multer.single('image'), companyController.uploadImage);
 
 //Routes Food
 routes.post('/food/store', auth, foodController.store);
+routes.get('/food/list', auth, foodController.list);
 routes.post('/food/image', auth, multer.single('image'), foodController.uploadImage);
 
 module.exports = routes;

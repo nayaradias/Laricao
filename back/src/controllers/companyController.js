@@ -24,6 +24,20 @@ module.exports = {
       });
     }
   },
+  async list(req, res) {
+    try {
+      console.log("companies");
+      const companies = await Company.find({});
+      console.log(companies);
+      return res.status(201).json({
+        companies
+      });
+    } catch (err) {
+      return res.status(400).json({
+        erro: err,
+      });
+    }
+  },
   async login(req, res) {
     const { email, password } = req.body;
     if (!email || !password) {
