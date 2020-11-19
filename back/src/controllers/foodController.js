@@ -35,7 +35,7 @@ module.exports = {
   async uploadImage(req, res) {
     try {
       const food = await Food.updateOne({ _id: res.locals.auth_data.id },
-        { $set: { UrlPhoto: `files/${req.file.filename}` } });
+        { $set: { UrlPhoto: `files/${req.files[0].filename}` } });
 
       return res.status(200).json({
         food
