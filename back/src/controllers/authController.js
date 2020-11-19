@@ -6,7 +6,7 @@ const bcrypt = require('bcrypt');
 const createUserToken = (UserId) => {
   return jwt.sign({
     id: UserId
-  }, 'laricaocolaqui');
+  }, 'laricaocolaaqui');
 };
 
 module.exports = {

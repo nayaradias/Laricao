@@ -10,10 +10,6 @@ const FoodSchema = new mongoose.Schema(
       type: String,
       required:false
     },
-    Evaluation: {
-      type: Number,
-      required:false
-    },
     Price: {
       type: Number,
       required: false,
