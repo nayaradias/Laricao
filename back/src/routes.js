@@ -14,12 +14,13 @@ routes.post('/user/image', auth, multer.any('image'), authController.uploadImage
 //Routes Company
 routes.post('/company/store', companyController.store);
 routes.post('/company/login', companyController.login);
-routes.get('/company/list',auth, companyController.list);
+routes.get('/company/list',companyController.list);
 routes.post('/company/image', auth, multer.any('image'), companyController.uploadImage);
 
 //Routes Food
 routes.post('/food/store', auth, foodController.store);
-routes.get('/food/list', auth, foodController.list);
+routes.get('/food/list', foodController.list);
+routes.get('/food/listByCategory', foodController.listByCategory);
 routes.post('/food/image', auth, multer.any('image'), foodController.uploadImage);
 
 module.exports = routes;

@@ -18,6 +18,11 @@ const FoodSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Company',
     },
+    Category: {
+      type: String,
+      required: false,
+      default:'Outros'
+    },
 
     UrlPhoto: {
       type: String,
