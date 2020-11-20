@@ -65,5 +65,17 @@ module.exports = {
         erro: err
       })
     }
-  }
+  },
+  async list(req, res) {
+    try {
+      const users = await User.find({});
+      return res.status(201).json({
+        users
+      });
+    } catch (err) {
+      return res.status(400).json({
+        erro: err,
+      });
+    }
+  },
 };

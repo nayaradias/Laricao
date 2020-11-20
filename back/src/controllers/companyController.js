@@ -27,7 +27,18 @@ module.exports = {
   async list(req, res) {
     try {
       const companies = await Company.find({});
-      console.log(companies);
+      return res.status(201).json({
+        companies
+      });
+    } catch (err) {
+      return res.status(400).json({
+        erro: err,
+      });
+    }
+  },
+  async listFavorites(req, res) {
+    try {
+      const companies = await Company.find({}).limit(10).sort({createdAt:1});
       return res.status(201).json({
         companies
       });
