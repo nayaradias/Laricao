@@ -11,6 +11,7 @@ routes.post("/user/store", authController.store);
 routes.post("/user/login", authController.login);
 routes.get("/user/list", auth,authController.list);
 routes.get("/user/list/favorites", auth,authController.listFavorites);
+routes.put("/user/list/favorites/edit", auth,authController.editFavorites);
 
 routes.post(
   "/user/image",

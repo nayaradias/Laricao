@@ -27,7 +27,7 @@ module.exports = {
   async list(req, res) {
     try {
       const companies = await Company.find({});
-      return res.status(201).json({
+      return res.status(200).json({
         companies
       });
     } catch (err) {

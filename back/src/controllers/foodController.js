@@ -36,7 +36,7 @@ module.exports = {
         Category: -1,
       });
 
-      return res.status(201).json({
+      return res.status(200).json({
         foods,
       });
     } catch (err) {

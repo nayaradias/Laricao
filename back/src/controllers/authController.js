@@ -70,7 +70,7 @@ module.exports = {
   async list(req, res) {
     try {
       const users = await User.find({});
-      return res.status(201).json({
+      return res.status(200).json({
         users
       });
     } catch (err) {
@@ -82,11 +82,9 @@ module.exports = {
   async listFavorites(req, res) {
     try {
       const userFavorites = await User.find({ _id: res.locals.auth_data.id }).select("Favorites");
-      
-      const company = await Company.find({_id:{$in: userFavorites[0].Favorites}});
 
-      console.log("company:", company);
-      
+      const company = await Company.find({ _id: { $in: userFavorites[0].Favorites } });
+
       return res.status(200).json({
         company
       });
@@ -96,4 +94,21 @@ module.exports = {
       });
     }
   },
+  async editFavorites(req, res) {
+    try {
+
+      const user = await User.updateOne({ _id: res.locals.auth_data.id },
+        { $push: { Favorites: req.body.Favorites } }
+      );
+
+      return res.status(200).json({
+        user
+      });
+    } catch (err) {
+      return res.status(400).json({
+        erro: err,
+      });
+    }
+  },
 };
+
