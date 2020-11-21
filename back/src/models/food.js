@@ -8,7 +8,7 @@ const FoodSchema = new mongoose.Schema(
     },
     Description: {
       type: String,
-      required:false
+      required: false
     },
     Price: {
       type: Number,
@@ -20,14 +20,20 @@ const FoodSchema = new mongoose.Schema(
     },
     Category: {
       type: String,
-      required: false,
-      default:'Outros'
+      enum: ['Burger', 'Pizza', 'Japonesa', 'churrasco', 'outros',]
     },
 
     UrlPhoto: {
       type: String,
       required: false,
     },
+    Options: [
+      {
+        Name: {type: String, required:false},
+        Description: {type: String,required:false}, 
+        Price: {type: Number,required:false}, 
+      }
+    ]
   },
   {
     timestamps: true,
