@@ -10,6 +10,8 @@ const auth = require("./middlewares/auth");
 routes.post("/user/store", authController.store);
 routes.post("/user/login", authController.login);
 routes.get("/user/list", auth,authController.list);
+routes.get("/user/list/favorites", auth,authController.listFavorites);
+
 routes.post(
   "/user/image",
   auth,
@@ -39,9 +41,5 @@ routes.post(
   multer.any("image"),
   foodController.uploadImage
 );
-
-//Routes Option
-// routes.post('/option/store', auth, foodController.store);
-// routes.get('/option/list', foodController.list);
 
 module.exports = routes;

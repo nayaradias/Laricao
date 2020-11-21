@@ -27,23 +27,20 @@ const UserSchema = new mongoose.Schema(
       required: false,
     },
     Payment: {
-      type: String, //(money, picpay)
+      type: String,
+      enum: ['money', 'picpay', 'Credit card', 'Debit card',],
       required: false,
     },
     UrlPhoto: {
       type: String,
       required: false,
     },
+    Favorites: [String]
   },
   {
     timestamps: true,
   }
 );
-
-// UserSchema.path('Email').validate((val) => {
-//   emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-//   return emailRegex.test(val);
-// }, "E-mail inválido.");
 
 UserSchema.pre('save', function (next) {
   let user = this;

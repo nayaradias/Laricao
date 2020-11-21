@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
+const Company = mongoose.model("Company");
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-// const { Store } = require('tough-cookie');
+
 const createUserToken = (UserId) => {
   return jwt.sign({
     id: UserId
@@ -71,6 +72,23 @@ module.exports = {
       const users = await User.find({});
       return res.status(201).json({
         users
+      });
+    } catch (err) {
+      return res.status(400).json({
+        erro: err,
+      });
+    }
+  },
+  async listFavorites(req, res) {
+    try {
+      const userFavorites = await User.find({ _id: res.locals.auth_data.id }).select("Favorites");
+      
+      const company = await Company.find({_id:{$in: userFavorites[0].Favorites}});
+
+      console.log("company:", company);
+      
+      return res.status(200).json({
+        company
       });
     } catch (err) {
       return res.status(400).json({

@@ -20,7 +20,7 @@ const FoodSchema = new mongoose.Schema(
     },
     Category: {
       type: String,
-      enum: ['Burger', 'Pizza', 'Japonesa', 'churrasco', 'outros',]
+      enum: ['Burger', 'Pizza', 'Japonesa', 'Churrasco', 'Outros',]
     },
 
     UrlPhoto: {
@@ -29,9 +29,9 @@ const FoodSchema = new mongoose.Schema(
     },
     Options: [
       {
-        Name: {type: String, required:false},
-        Description: {type: String,required:false}, 
-        Price: {type: Number,required:false}, 
+        Name: { type: String, required: false },
+        Description: { type: String, required: false },
+        Price: { type: Number, required: false },
       }
     ]
   },
@@ -41,3 +41,4 @@ const FoodSchema = new mongoose.Schema(
 );
 
 mongoose.model('Food', FoodSchema);
+// module.exports = mongoose.model('Food', FoodSchema);
