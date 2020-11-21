@@ -11,7 +11,7 @@ export const Title = styled.Text`
   align-self: ${(props) => props.alignSelf || "auto"};
   text-align: ${(props) => props.textAlign || "auto"}
   font-size: ${(props) => props.fontSize || "18px"};
-  font-family: 'roboto';
+  font-family: "roboto";
   font-weight: ${(props) => props.fontWeight || 500};
   color: ${(props) => props.color || colors.gray};
   letter-spacing: ${(props) => props.letterSpacing || 0}px;

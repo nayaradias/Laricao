@@ -68,7 +68,7 @@ const Bag = () => {
         <CardBottom>
           <Row>
             <ContentTitle>
-              <Title fontWeight="bold" size={14}>
+              <Title fontWeight="bold" size={14} fontFamily="sans-serif">
                 Pedido
               </Title>
               <Title color={colors.lightgray}> | 1 Item</Title>

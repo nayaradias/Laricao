@@ -114,7 +114,7 @@ export const ButtonMais = styled.TouchableOpacity`
 export const ButtonPedido = styled.TouchableOpacity`
     border-radius: 25px;
     background-image: linear-gradient(to right, #ffa600, #ffbc00, #ffd200, #fce800, #f4ff00);
-    width: 128%;
+    width: 335px;
     margin-left: -37px;
     margin-top: 10px;
     align-items: center;
@@ -132,11 +132,12 @@ export const Banner = styled.Image`
 `;
 
 export const CardBottom = styled.View` 
-    border-radius: 15px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
     background-color: ${colors.white};
     border: none;
     padding: 50px;
-    box-shadow: 10px 15px 23px ${colors.black};
+    box-shadow: 5px 15px 30px ${colors.gray};
     position: absolute;
     bottom: 0;
     width: 100%;
@@ -145,7 +146,7 @@ export const CardBottom = styled.View`
 export const Line = styled.View`
     border-bottom-color: ${colors.black};
     border-bottom-width: 1px;
-    width: 125%;
+    width: 330px;
     margin-left: -33px;
     margin-top: -10px;
 `;
