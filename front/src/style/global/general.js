@@ -11,7 +11,7 @@ export const Title = styled.Text`
   align-self: ${(props) => props.alignSelf || "auto"};
   text-align: ${(props) => props.textAlign || "auto"};
   font-size: ${(props) => props.fontSize || 18}px;
-  /* font-family: 'roboto'; */
+  font-family: ${(props) => props.fontFamily || 'roboto-regular'}; 
   font-weight: ${(props) => props.fontWeight || 500};
   color: ${(props) => props.color || colors.gray};
   letter-spacing: ${(props) => props.letterSpacing || 0}px;
@@ -26,7 +26,7 @@ export const Text = styled.Text`
   align-self: ${(props) => props.alignSelf || "auto"};
   text-align: ${(props) => props.textAlign || "auto"};
   font-size: ${(props) => props.fontSize || 14}px;
-  /* font-family: "roboto"; */
+  font-family: ${(props) => props.fontFamily || 'roboto-regular'};
   font-weight: ${(props) => props.fontWeight || 400};
   color: ${(props) => props.color || colors.gray};
   margin: ${(props) => props.marginTop || 0}px
@@ -59,8 +59,6 @@ export const IconTabBar = styled.Image`
 `;
 export const IconActivy = styled.View`
   background-color:${colors.transparent};
-  /* height:32px;
-  width:32px; */
   padding:5px;
   border-radius:100px;
 `;

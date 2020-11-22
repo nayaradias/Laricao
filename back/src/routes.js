@@ -36,9 +36,8 @@ routes.post(
 routes.post("/food/store", auth, foodController.store);
 routes.get("/food/list", foodController.list);
 routes.get("/food/listByCategory", foodController.listByCategory);
-routes.post(
+routes.put(
   "/food/image",
-  auth,
   multer.any("image"),
   foodController.uploadImage
 );

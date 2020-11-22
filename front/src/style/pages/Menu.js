@@ -20,6 +20,7 @@ export const Input = styled.TextInput`
     margin-right:8px;
     color:${colors.gray};
     width:92%;
+    padding:5px;
 `;
 export const Row = styled.View`
     flex-direction:row;

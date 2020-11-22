@@ -1,6 +1,7 @@
 import styled from "styled-components/native";
 import { Dimensions } from "react-native";
 import colors from "../global/colors";
+import metrics from '../global/mectrics';
 
 const { width } = Dimensions.get("window");
 export const Header = styled.View`
@@ -8,8 +9,7 @@ export const Header = styled.View`
   align-items: center;
   align-self: center;
 
-  width: ${width + 30}px;
-  height: ${width / 1.8};
+  width: ${metrics.screenWidth}px;
   border-bottom-left-radius: 190px;
   border-bottom-right-radius: 190px;
   box-shadow: 8px 8px 50px ${colors.lightgray};
@@ -20,12 +20,7 @@ export const Input = styled.TextInput`
   margin-left:8px;
   font-size: 13px;
   color: ${colors.gray};
-  /* &:Input:focus {
-        outline: none;
-        box-shadow: 0px 0px 2px red;
-    } */
-
-  /* background-color: ${(props) => props.backgroundColor || colors.white}; */
+  font-family:'Lobster';
 `;
 export const Buttom = styled.TouchableOpacity`
   justify-content: center;
@@ -67,4 +62,12 @@ export const ContainerInput = styled.View`
   border-radius: 30px;
   border: 1px solid ${colors.lightgray};
   box-shadow: 3px 3px 5px ${colors.lightgray};
+`;
+
+export const Link = styled.TouchableOpacity`
+  justify-content: center;
+  align-items: center;
+
+  padding:5px;
+  margin-top:20px;
 `;

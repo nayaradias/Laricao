@@ -46,14 +46,16 @@ module.exports = {
     }
   },
   async uploadImage(req, res) {
-    try {
-      const food = await Food.updateOne(
-        { _id: res.locals.auth_data.id },
-        { $set: { UrlPhoto: `files/${req.files[0].filename}` } }
-      );
 
+    try {
+      const food = await Food.updateOne({ _id: req.body.id },
+        { $set: { UrlPhoto: `files/${req.body.url}` } }
+      );
+      // const food = await Food.updateOne({ _id: req.body.id },
+      //   { $set: { UrlPhoto: `files/${req.files[0].filename}` } } 
+      // );
       return res.status(200).json({
-        food,
+        food
       });
     } catch (err) {
       return res.status(400).json({
