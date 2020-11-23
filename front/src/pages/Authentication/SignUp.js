@@ -15,10 +15,11 @@ import {
   ContainerTile,
   Form,
   ContainerInput,
+  Link,
 } from "../../style/pages/signup";
 import api from '../../services/api';
 
-const SignUp = ({navigation}) => {
+const SignUp = ({ navigation }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassaword] = useState("");
@@ -39,14 +40,14 @@ const SignUp = ({navigation}) => {
     <Container>
       <Header>
         <ContainerTile>
-          <Title color={colors.white} fontSize={30} fontWeight="bold">
+          <Title fontFamily="Lobster" color={colors.white} fontSize={30} fontWeight="bold">
             Cadastro
           </Title>
-        </ContainerTile>
-
-        <ContainerLogo>
+          
+        <ContainerLogo marginBottom={-110}>
           <Logo source={require("../../assets/icons/LogoIcon.svg")} />
         </ContainerLogo>
+        </ContainerTile>
       </Header>
       <Form>
         <ContainerInput>
@@ -80,10 +81,13 @@ const SignUp = ({navigation}) => {
           />
         </ContainerInput>
         <Buttom onPress={() => store({ name, email, password })}>
-          <Text color={colors.white} fontSize={18}>
+          <Text fontFamily="Lobster" color={colors.white} fontSize={18}>
             Cadastrar
           </Text>
         </Buttom>
+        <Link onPress={() => navigation.navigate('SignIn')}>
+          <Text> Possui conta? <Text color={colors.orange}>Faça o login</Text></Text>
+        </Link>
       </Form>
     </Container>
   );

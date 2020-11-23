@@ -20,6 +20,7 @@ export const Input = styled.TextInput`
     margin-right:8px;
     color:${colors.gray};
     width:92%;
+    padding:5px;
 `;
 export const Row = styled.View`
     flex-direction:row;
@@ -96,5 +97,5 @@ export const ButtonMore = styled.TouchableOpacity`
     height:30px;
 `;
 export const ViewTransaparent = styled.View`
-  /* padding: 0 3px; */
+    padding: 3px 0px;
 `;

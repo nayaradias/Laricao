@@ -16,6 +16,7 @@ import {
     ContainerTile,
     Form,
     ContainerInput,
+    Link,
 } from "../../style/pages/signin";
 import api from '../../services/api';
 
@@ -29,7 +30,6 @@ const SignIn = ({navigation}) => {
                 email,
                 password,
             });
-            console.log(response);
             if (response.status === 200) {
                 AsyncStorage.setItem('token', response.data.token);
                 AsyncStorage.setItem('user', response.data.user);
@@ -64,17 +64,20 @@ const SignIn = ({navigation}) => {
                     />
                 </ContainerInput>
                 <Buttom onPress={() => login({ email, password })}>
-                    <Text color={colors.white} fontSize={18}>
+                    <Text color={colors.white} fontSize={18} fontFamily="Lobster">
                         Entrar
                      </Text>
                 </Buttom>
+                <Link onPress={() => navigation.navigate('SignUp')}>
+                    <Text>Não possui conta? <Text color={colors.orange}>Cadastre-se</Text></Text>
+                </Link>
             </Form>
             <Header>
                 <ContainerTile>
-                    <ContainerLogo>
+                    <ContainerLogo marginTop={-110}>
                         <Logo source={require("../../assets/icons/LogoIcon.svg")} />
                     </ContainerLogo>
-                    <Title color={colors.white} fontSize={30} fontWeight="bold">
+                    <Title fontFamily="Lobster" color={colors.white} fontSize={30} fontWeight="bold">
                         Login
                      </Title>
                 </ContainerTile>

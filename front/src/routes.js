@@ -14,7 +14,8 @@ import Menu from './pages/Home/Menu';
 import SplashScreen from './pages/Home/SplashScreen';
 import Requests from './pages/Requests/Requests';
 import colors from '../src/style/global/colors';
-import { IconTabBar, IconActivy } from './style/global/general';
+import { IconTabBar } from './style/global/general';
+
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -29,24 +30,18 @@ const TabBarScreenOptions = ({ route }) => ({
         else if (route.name === 'Favorites') { iconName = 'heart'; }
         else if (route.name === 'Requests') { iconName = 'list' }
         else { return; }
-        return (
-            <IconActivy>
-                <FontAwesome name={iconName} size={size} color={color} style={{ borderRadius: 30 }} />
-            </IconActivy>
-        );
+        return (<FontAwesome name={iconName} size={size} color={color} style={{ borderRadius: 30 }} />);
     },
 });
 const StackBarScreenOptions = {
     title: <IconTabBar source={require('./assets/icons/LogoIcon.svg')} />,
     headerStyle: {
-        // backgroundColor: colors.orange,
         shadowColor: colors.transparent,
         elevation: 0
     },
     headerTintColor: colors.gray,
     headerTitleStyle: {
-        fontWeight: 'bold',
-        alignSelf: 'center'
+        alignSelf: 'end',
     },
 };
 
@@ -75,15 +70,22 @@ function LaricaoTabScreen() {
     );
 }
 
+const StackOptions = {
+    headerTintColor: colors.orange,
+    headerTitleStyle: {
+        fontFamily: "roboto-regular",
+        fontWeight: "bold"
+    },
+};
 const Routes = () => {
     return (
         <NavigationContainer>
-            <Stack.Navigator>            
-                <Stack.Screen options={{ headerShown: false }} name="SplashScreen" component={SplashScreen} />
+            <Stack.Navigator>
                 <Stack.Screen options={{ headerShown: false }} name="Home" component={Home} />
-                <Stack.Screen options={{ headerShown: false }} name="SignUp" component={SignUp} />
-                <Stack.Screen options={{ headerShown: false }} name="SignIn" component={SignIn} />
                 <Stack.Screen name="Laricao" component={LaricaoTabScreen} options={StackBarScreenOptions} />
+                <Stack.Screen name="SignUp" component={SignUp} options={StackOptions}/>
+                <Stack.Screen name="SignIn" component={SignIn} options={StackOptions}/>
+                <Stack.Screen options={{ headerShown: false }} name="SplashScreen" component={SplashScreen} />
             </Stack.Navigator>
         </NavigationContainer>
     );
