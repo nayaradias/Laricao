@@ -15,7 +15,7 @@ const Home = ({ navigation }) => {
     return (
         <Container>
             <Content>
-                <Title fontSize={72} fontWeight="bold" color={colors.orange}>Larição</Title>
+                <Title fontSize={72} fontWeight="bold" color={colors.orange}>Laricão</Title>
                 <Text fontSize={16} color={colors.gray}>Serviço 7 dias por semana. Pediu, chegou!</Text>
                 <Buttom onPress={() => navigation.navigate('Laricao')}>
                     <Text color={colors.white}>INICIAR</Text>

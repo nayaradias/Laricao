@@ -3,7 +3,7 @@ const jwt =  require('jsonwebtoken');
 const auth = (req,res,next)=>{
     let token = req.headers['x-access-token']|| req.headers['authorization'];
     if(!token)
-        return res.status(401).json({mensagem:"Informe o token"});
+        return res.status(401).json({mensagem:"Enter the Token"});
     if(token.toString().startsWith('Bearer ')){
         token = token.slice(7,token.toString().length);
     }
@@ -12,7 +12,7 @@ const auth = (req,res,next)=>{
             if(err){
                 return res.json({
                     success:false,
-                    mensagem:"Token invalido"
+                    mensagem:"Invalid Token"
                 })
             }else{
                 res.locals.auth_data = decoded;
@@ -24,7 +24,7 @@ const auth = (req,res,next)=>{
     else{
         return res.json({
             success:false,
-            mensagem:"Token não informado"
+            mensagem:"Token not informed"
         })
     }
   

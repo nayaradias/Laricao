@@ -52,12 +52,12 @@ const StackBarScreenOptions = {
 
 function LaricaoTabScreen() {
     return (
-        <Tab.Navigator initialRouteName="Bag"
+        <Tab.Navigator initialRouteName="Menu"
             screenOptions={TabBarScreenOptions}
             tabBarOptions={{
-                activeTintColor: colors.white,
+                activeTintColor: colors.orange,
                 inactiveTintColor: colors.lightgray,
-                activeBackgroundColor: colors.orange,
+                activeBackgroundColor: colors.white,
                 style: {
                     borderTopLeftRadius: 15,
                     borderTopRightRadius: 15,

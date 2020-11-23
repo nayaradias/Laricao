@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
-
-const UserSchema = new mongoose.Schema(
+const CompanySchema = new mongoose.Schema(
   {
     Name: {
       type: String,
@@ -18,6 +17,10 @@ const UserSchema = new mongoose.Schema(
       required: true,
       select: false,
     },
+    Evaluation: {
+      type: Number,
+      required:false
+    },
     PhoneNumber: {
       type: Number,
       required: false,
@@ -26,30 +29,35 @@ const UserSchema = new mongoose.Schema(
       type: String,
       required: false,
     },
-    Payment: {
+    WorkHoursStart: {
       type: String,
-      enum: ['money', 'picpay', 'Credit card', 'Debit card',],
+      required: false,
+    },
+    WorkHoursEnd: {
+      type: String,
+      required: false,
+    },
+    Status: {
+      type: String,
+      enum:['Aberto', 'Fechado',],
       required: false,
     },
     UrlPhoto: {
       type: String,
       required: false,
     },
-    Favorites: [String]
   },
   {
     timestamps: true,
   }
 );
-
-UserSchema.pre('save', function (next) {
-  let user = this;
-  if (!user.isModified('Password'))
+CompanySchema.pre('save', function (next) {
+  let company = this;
+  if (!company.isModified('Password'))
       return next();
-  bcrypt.hash(user.Password, 10, (err, bcrypt) => {
-      user.Password = bcrypt;
+  bcrypt.hash(company.Password, 10, (err, bcrypt) => {
+    company.Password = bcrypt;
       return next();
   });
 });
-
-mongoose.model('User', UserSchema);
+mongoose.model('Company', CompanySchema);
