@@ -17,7 +17,7 @@ Avatar,
 UserName,
 UserEmail
 } 
-from "../../style/pages/Account"
+from "../../style/pages/Account";
 import colors from "../../style/global/colors";
 
 
