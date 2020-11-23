@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect ,usueState, } from "react";
 import { Container, Title, Text } from "../../style/global/general";
 import { FontAwesome } from "@expo/vector-icons";
 import colors from "../../style/global/colors";
@@ -79,7 +79,7 @@ const Bag = () => {
                 <Text fontWeight="bold" marginLeft={11} color={colors.gray}>
                   R$ 28,00
                 </Text>
-                <Text marginRight={12} color={colors.orange}>
+                <Text marginRight={10} color={colors.orange}>
                   R$ 28,00
                 </Text>
               </ContainerText>
