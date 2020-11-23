@@ -97,5 +97,5 @@ export const ButtonMore = styled.TouchableOpacity`
     height:30px;
 `;
 export const ViewTransaparent = styled.View`
-  /* padding: 0 3px; */
+    padding: 3px 0px;
 `;

@@ -14,57 +14,35 @@ import {
     ContainerRecommended,
     RecommendedImage,
     RecommendedDescription,
-    ContainerButtons,
-    ButtonLess,
-    ButtonMore,
     ViewTransaparent,
 } from '../../style/pages/Menu';
-import FontAwesome from '@expo/vector-icons/FontAwesome';
 import api from '../../services/api';
 const dataCategories = [
     {
         id: 1,
-        title: 'Burger',
-        // image: require("../../assets/imagesFooter1.png")
+        Name: 'Burger',
+        image: require('../../assets/images/hamburguer.jpg')
     },
     {
         id: 2,
-        title: 'Pizza',
-        // image: require("../../assets/imagesFooter1.png")
+        Name: 'Pizza',
+        image: require('../../assets/images/pizza.jpg')
     },
     {
         id: 3,
-        title: 'Japonesa',
-        // image: require("../../assets/imagesFooter1.png")
+        Name: 'Japonesa',
+        image: require('../../assets/images/japonesa.jpg')
     },
     {
         id: 4,
-        title: 'Churrasco',
-        // image: require("../../assets/imagesFooter1.png")
-    }
-    ,
-    {
-        id: 5,
-        title: 'Teste',
-        // image: require("../../assets/imagesFooter1.png")
+        Name: 'Churrasco',
+        image: require('../../assets/images/churrasco.jpg')
     }
 ]
 const Menu = ({ navigation }) => {
     const [popular, setPopular] = useState([]);
-    const [categories, setCategories] = useState([]);
     const [recommended, setRecommended] = useState([]);
-    const [totalArray, setTotalArray] = useState([]);
-    const [total, setTotal] = useState(0);
 
-    const less = () => {
-        total <= 0 ? 0 : setTotal(total - 1);
-        setTotal(...total);
-    };
-    const more = () => {
-        setTotal(total + 1)
-        setTotal(...total);
-    };
-    console.log("Total:", total);
     const getPopular = async () => {
         try {
             const response = await api.get("company/listFavorites", {});
@@ -77,7 +55,7 @@ const Menu = ({ navigation }) => {
         try {
             const response = await api.get("food/list", {});
             setRecommended(response.data.foods);
-            setCategories(recommended);
+            // setCategories(recommended);
         } catch (err) {
             console.log("ERR Catch:", err);
         }
@@ -93,14 +71,8 @@ const Menu = ({ navigation }) => {
             showsVerticalScrollIndicator={false}
             showsHorizontalScrollIndicator={false}
         >
-            <ContainerInput>
-                <FontAwesome name="search" size={22} color={colors.orange} />
-                <Input placeholder="Buscar" />
-            </ContainerInput>
-
             <Row style={{ justifyContent: "space-between" }}>
-                <Title marginLeft={20} fontWeight="bold" color={colors.grey} fontSize={16}>Explorar Categorias</Title>
-                {/* <Text color={colors.lightgray} marginRight={20}>Ver todos</Text> */}
+                <Title marginLeft={20} marginTop={20} fontWeight="bold" color={colors.grey} fontSize={16}>Explorar Categorias</Title>
             </Row>
             <Row>
                 <ContainerScrollView horizontal
@@ -108,12 +80,10 @@ const Menu = ({ navigation }) => {
                     showsHorizontalScrollIndicator={false}
                 >
                     {
-                        categories.map(
+                        dataCategories.map(
                             (item) => (
-                                <Categories key={item._id}>
-                                    <CategoriesImage source={{
-                                        uri: "http://localhost:3001/" + item.UrlPhoto,
-                                    }} />
+                                <Categories key={item.id}>
+                                    <CategoriesImage source={{ uri: item.image }} />
                                     <Title fontWeight="bold" fontSize={16} color={colors.grey}>{item.Name}</Title>
                                 </Categories>
                             )
@@ -122,7 +92,7 @@ const Menu = ({ navigation }) => {
                 </ContainerScrollView>
             </Row>
 
-            <Title marginLeft={20} fontWeight="bold" color={colors.grey} fontSize={16}>Populares</Title>
+            <Title marginLeft={20} marginTop={20} fontWeight="bold" color={colors.grey} fontSize={16}>Populares</Title>
             <Row>
                 <ContainerScrollView horizontal
                     showsVerticalScrollIndicator={false}
@@ -143,7 +113,7 @@ const Menu = ({ navigation }) => {
                     }
                 </ContainerScrollView>
             </Row>
-            <Title marginLeft={20} fontWeight="bold" color={colors.grey} fontSize={16}>Recomendados</Title>
+            <Title marginLeft={20} marginTop={20} fontWeight="bold" color={colors.grey} fontSize={16}>Recomendados</Title>
             <ContainerScrollView horizontal
                 showsHorizontalScrollIndicator={false}>
                 {
@@ -157,36 +127,10 @@ const Menu = ({ navigation }) => {
                                 <RecommendedDescription>
                                     <ViewTransaparent>
                                         <Title fontSize={16} color={colors.gray}>{item.Name}</Title>
-                                        <Text fontSize={10} color={colors.lightgray}>descrvvdskvndsknvdksnvkdsnvdklsn</Text>
-                                        <Title fontSize={12} fontWeight="bold" color={colors.gray}>{item.Company.Name}</Title>
+                                        <Text marginTop={5} fontSize={10} color={colors.lightgray}>{item.Description}</Text>
+                                        <Text marginTop={5} fontWeight="bold" color={colors.orange}>R$ {item.Price}</Text>
+                                        <Text marginTop={5} fontSize={12} fontWeight="bold" color={colors.gray}>{item.Company.Name}</Text>
                                     </ViewTransaparent>
-
-                                    <ContainerButtons>
-                                        <ButtonLess onPress={() => less(item._id)}>
-                                            <FontAwesome name="minus" size={16} color={colors.orange} />
-                                        </ButtonLess>
-                                        <ViewTransaparent>
-                                            {/* {
-                                                total?.map((item) => {
-                                                    <Text fontWeight="bold" color={colors.orange}>
-                                                        {
-                                                            item ? item : "0"
-                                                        }
-                                                    </Text>
-                                                })
-                                            } */}
-                                            <Text fontWeight="bold" color={colors.orange}>
-                                                R$ 0,00
-                                                
-                                            </Text>
-                                        </ViewTransaparent>
-                                        <ButtonMore onPress={() => more(item._id)}>
-                                            <FontAwesome name="plus" size={16} color={colors.white} />
-                                        </ButtonMore>
-                                        <ViewTransaparent>
-                                            <Text color={colors.yellow}>R$ {item.Price}</Text>
-                                        </ViewTransaparent>
-                                    </ContainerButtons>
                                 </RecommendedDescription>
                             </ContainerRecommended>
 
