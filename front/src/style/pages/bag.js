@@ -52,7 +52,7 @@ export const ContentSubTitle2 = styled.View`
     align-items: center;
     justify-content: space-between;
     margin-top: 10px;
-    margin-left: 200px;
+    margin-left: 188px;
 `;
 
 export const ContentSubTitle3 = styled.View`
@@ -60,7 +60,7 @@ export const ContentSubTitle3 = styled.View`
     align-items: center;
     justify-content: space-between;
     margin-top: 10px;
-    margin-left: 155px;
+    margin-left: 141px;
 `;
 
 export const ContentSubTitle4 = styled.View`
@@ -68,7 +68,7 @@ export const ContentSubTitle4 = styled.View`
     align-items: center;
     justify-content: space-between;
     margin-top: 10px;
-    margin-left: 226px;
+    margin-left: 216px;
 `;
 
 
@@ -89,31 +89,31 @@ export const ContainerText = styled.View`
     margin-top: 10px;
 `;
 
-export const ButtonMenos = styled.TouchableOpacity`
-    width: 30px;
-    height: 30px;
-    background-color: #eeeeee; 
-    border-radius: 100px;
-    justify-content: center;
-    align-items: center;
-    padding: 0px 4px;
-    margin: 0px 5px;
-`;
+export const ButtonLess = styled.TouchableOpacity`
+    align-items:center;
+    justify-content:center;
 
-export const ButtonMais = styled.TouchableOpacity`
-    width: 30px;
-    height: 30px;
-    background-color: ${colors.orange}; 
-    border-radius: 100px;
-    justify-content: center;
-    align-items: center;
-    padding: 0px 4px;
-    margin: 0px 5px;
+    background-color:${colors.lightgray};
+    border-radius:100px;
+    width:30px;
+    height:30px;
+`;
+export const ButtonMore = styled.TouchableOpacity`
+    align-items:center;
+    justify-content:center;
+
+    background-color:${colors.orange};
+    border-radius:100px;
+    width:30px;
+    height:30px;
+`;
+export const ViewTransaparent = styled.View`
+  padding: 0 3px;
 `;
 
 export const ButtonPedido = styled.TouchableOpacity`
     border-radius: 25px;
-    background-image: linear-gradient(to right, #ffa600, #ffbc00, #ffd200, #fce800, #f4ff00);
+    background-image: linear-gradient(to right, #ff9b00, #fba900, #f7b600, #f1c300, #ebcf12);
     width: 335px;
     margin-left: -37px;
     margin-top: 10px;
@@ -149,4 +149,12 @@ export const Line = styled.View`
     width: 330px;
     margin-left: -33px;
     margin-top: -10px;
+`;
+
+export const ButtonTrash = styled.TouchableOpacity`
+    
+`;
+
+export const Swipe = styled.View`
+    background-color: ${colors.orange};
 `;

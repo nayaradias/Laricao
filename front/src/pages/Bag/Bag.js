@@ -7,8 +7,9 @@ import {
   Card,
   ContentText,
   ContainerButton,
-  ButtonMenos,
-  ButtonMais,
+  ButtonLess,
+  ButtonMore,
+  ViewTransaparent,
   ContainerText,
   Banner,
   Row,
@@ -21,13 +22,31 @@ import {
   ContentSubTitle3,
   ContentSubTitle4,
   ButtonPedido,
+  ButtonTrash,
+  Swipe,
 } from "../../style/pages/bag";
+import { Swipeable } from "react-native-gesture-handler";
 
 const Bag = () => {
+  const rightAction = () => {
+    <Swipe>
+      <ButtonTrash>
+        <FontAwesome name="trash" size={16} color={colors.orange} />
+      </ButtonTrash>
+    </Swipe>;
+  };
+
   return (
     <Container>
       <Content>
-        <Card>
+        <Card
+          renderItem={() => {
+            <Swipeable
+              renderRightActions={rightAction}
+              onSwipeableRightOpen={() => console.log()}
+            ></Swipeable>;
+          }}
+        >
           <Row>
             <Banner
               source={require("../../assets/images/espetinho-carne.jpg")}
@@ -43,22 +62,24 @@ const Bag = () => {
                   250g/Un
                 </Text>
                 <ContainerButton>
-                  <ButtonMenos>
+                  <ButtonLess>
                     <FontAwesome name="minus" size={16} color={colors.orange} />
-                  </ButtonMenos>
-                  <Text fontWeight="bold" color={colors.orange}>
-                    1
-                  </Text>
-                  <ButtonMais>
+                  </ButtonLess>
+                  <ViewTransaparent>
+                    <Text fontWeight="bold" color={colors.orange}>
+                      1
+                    </Text>
+                  </ViewTransaparent>
+                  <ButtonMore>
                     <FontAwesome name="plus" size={16} color={colors.white} />
-                  </ButtonMais>
+                  </ButtonMore>
                 </ContainerButton>
               </>
               <ContainerText>
                 <Text fontWeight="bold" marginLeft={11} color={colors.gray}>
                   R$ 28,00
                 </Text>
-                <Text marginRight={15} color={colors.orange}>
+                <Text marginRight={12} color={colors.orange}>
                   R$ 28,00
                 </Text>
               </ContainerText>
@@ -88,7 +109,10 @@ const Bag = () => {
               <Title color={colors.darkgray}>Taxa de Entrega</Title>
             </ContentSubTitle1>
             <ContentSubTitle3>
-              <Title color={colors.green} fontWeight="bold"> Grátis</Title>
+              <Title color={colors.green} fontWeight="bold">
+                {" "}
+                Grátis
+              </Title>
             </ContentSubTitle3>
           </Row>
           <Row>
