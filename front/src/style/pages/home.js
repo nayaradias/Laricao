@@ -10,9 +10,8 @@ export const Content = styled.View`
 
 `;
 export const Banner = styled.Image`
-  flex:0.4;
+  flex:0.5;
 
-  width:${props => props.width || 100}%;
   height: ${props => props.height || 150}px;
 `;
 export const Buttom = styled.TouchableOpacity`
@@ -20,11 +19,11 @@ export const Buttom = styled.TouchableOpacity`
   align-items: center;
 
   margin-top:80px;
-  padding:25px;
+  padding:25px 120px;
   border-radius:30px;
-  width:${props => props.width || 100}%;
   height: ${props => props.height || 30}px;
   background-color:${colors.orange};
+  /* background-image:linear-gradient(to right #ffa600, #ffbc00, #ffd200, #fce800 ); */
 
 `;
 

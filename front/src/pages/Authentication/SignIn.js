@@ -16,70 +16,80 @@ import {
     ContainerTile,
     Form,
     ContainerInput,
+    Link,
 } from "../../style/pages/signin";
 import api from '../../services/api';
 
-
-const SignIn = ({navigation}) => {
+const SignIn = ({ navigation }) => {
     const [email, setEmail] = useState("");
     const [password, setPassaword] = useState("");
+
     const login = async ({ email, password }) => {
         try {
-            const response = await api.post("user/login", {
+            await api.post("user/login", {
                 email,
                 password,
+            }).then((res) => {
+                console.log("then:", res);
+                if (res.status === 200) {
+                    AsyncStorage.setItem('token', res.data.token);
+                    AsyncStorage.setItem('user', res.data.user);
+                    navigation.navigate('Laricao');
+                }
+                console.log("res:", res.data);
+            }).catch((err) => {
+                console.log("catch:", err);
             });
-            console.log(response);
-            if (response.status === 200) {
-                AsyncStorage.setItem('token', response.data.token);
-                AsyncStorage.setItem('user', response.data.user);
-                navigation.navigate('Laricao');
-            }
-        } catch (err) {
-            
-            console.log("ERR Catch:", err);
+        } catch (error) {
+            console.log("error:", error);
         }
     };
+
     return (
-        <Container>
-            <Form>
-                <ContainerInput>
-                    <FontAwesome name="envelope" size={20} color={colors.orange} />
-                    <Input placeholder="Email"
-                        type="mail"
-                        required
-                        name="email"
-                        value={email}
-                        onChangeText={email => setEmail(email)}
-                    />
-                </ContainerInput>
-                <ContainerInput>
-                    <FontAwesome name="key" size={20} color={colors.orange} />
-                    <Input placeholder="Senha"
-                        type="password"
-                        required
-                        name="password"
-                        value={password}
-                        onChangeText={password => setPassaword(password)}
-                    />
-                </ContainerInput>
-                <Buttom onPress={() => login({ email, password })}>
-                    <Text color={colors.white} fontSize={18}>
-                        Entrar
+        <>
+            <Container>
+                <Form>
+                    <ContainerInput>
+                        <FontAwesome name="envelope" size={20} color={colors.orange} />
+                        <Input placeholder="Email"
+                            type="mail"
+                            required
+                            name="email"
+                            value={email}
+                            onChangeText={email => setEmail(email)}
+                        />
+                    </ContainerInput>
+                    <ContainerInput>
+                        <FontAwesome name="key" size={20} color={colors.orange} />
+                        <Input placeholder="Senha"
+                            secureTextEntry
+                            required
+                            name="password"
+                            value={password}
+                            onChangeText={password => setPassaword(password)}
+                        />
+                    </ContainerInput>
+                    <Buttom onPress={() => login({ email, password })}>
+                        <Text color={colors.white} fontSize={18} fontFamily="Lobster">
+                            Entrar
                      </Text>
-                </Buttom>
-            </Form>
-            <Header>
-                <ContainerTile>
-                    <ContainerLogo>
-                        <Logo source={require("../../assets/icons/LogoIcon.svg")} />
-                    </ContainerLogo>
-                    <Title color={colors.white} fontSize={30} fontWeight="bold">
-                        Login
+                    </Buttom>
+                    <Link onPress={() => navigation.navigate('SignUp')}>
+                        <Text>Não possui conta? <Text color={colors.orange}>Cadastre-se</Text></Text>
+                    </Link>
+                </Form>
+                <Header>
+                    <ContainerTile>
+                        <ContainerLogo marginTop={-110}>
+                            <Logo source={require("../../assets/icons/LogoIcon.svg")} />
+                        </ContainerLogo>
+                        <Title fontFamily="Lobster" color={colors.white} fontSize={30} fontWeight="bold">
+                            Login
                      </Title>
-                </ContainerTile>
-            </Header>
-        </Container>
+                    </ContainerTile>
+                </Header>
+            </Container>
+        </>
     );
 }
 

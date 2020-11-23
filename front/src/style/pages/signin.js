@@ -1,16 +1,12 @@
 import styled from "styled-components/native";
-import { Dimensions } from "react-native";
 import colors from "../global/colors";
+import metrics from '../global/mectrics';
 
-const { width } = Dimensions.get("window");
 export const Header = styled.View`
-  flex:1;
   justify-content: center;
   align-items: center;
 
-  /* margin-top:100; */
-  width: ${width + 30}px;
-  height: ${width / 1.8};
+  width: ${metrics.screenWidth}px;
   border-top-left-radius: 190px;
   border-top-right-radius: 190px;
   box-shadow: 8px 8px 50px ${colors.lightgray};
@@ -21,7 +17,9 @@ export const Input = styled.TextInput`
   margin-left:8px;
   font-size: 13px;
   color: ${colors.gray};
+  font-family:'Lobster';
 `;
+
 export const Buttom = styled.TouchableOpacity`
   justify-content: center;
   align-items: center;
@@ -32,20 +30,18 @@ export const Buttom = styled.TouchableOpacity`
   margin-top: 25px;
   background-color: ${(props) => props.backgroundColor || colors.orange};
   box-shadow: 3px 3px 5px ${colors.lightgray};
-
 `;
 
 export const ContainerTile = styled.View`
   justify-content: center;
   align-items: center;
 
-  margin-top:-160px;
   padding:60px 0px;
-
+  margin-bottom: 62px;
 `;
 
 export const Form = styled.View`
-flex:2;
+  flex:2;
   justify-content: center;
   align-items: center;
 
@@ -53,6 +49,7 @@ flex:2;
   margin-top: 5%;
   width: 100%;
 `;
+
 export const ContainerInput = styled.View`
   flex-direction:row;
 
@@ -64,4 +61,12 @@ export const ContainerInput = styled.View`
   border-radius: 30px;
   border: 1px solid ${colors.lightgray};
   box-shadow: 3px 3px 5px ${colors.lightgray};
+`;
+
+export const Link = styled.TouchableOpacity`
+  justify-content: center;
+  align-items: center;
+
+  padding:5px;
+  margin-top:20px;
 `;
