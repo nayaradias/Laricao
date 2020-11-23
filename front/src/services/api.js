@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { NativeModules } from "react-native";
+// import { NativeModules } from "react-native";
 import { getToken, logout } from './auth';
 
 const api = axios.create({
@@ -14,7 +14,7 @@ api.interceptors.request.use(async (config) => {
   config.validateStatus = (status) => {
     if (status === 401) {
       logout();
-      NativeModules.DevSettings.reload();
+     // NativeModules.DevSettings.reload();
     } else {
       return status;
     }

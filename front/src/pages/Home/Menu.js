@@ -3,8 +3,6 @@ import colors from '../../style/global/colors';
 import { Title, Text } from '../../style/global/general';
 import {
     Container,
-    ContainerInput,
-    Input,
     Row,
     ContainerScrollView,
     Categories,
@@ -17,6 +15,7 @@ import {
     ViewTransaparent,
 } from '../../style/pages/Menu';
 import api from '../../services/api';
+
 const dataCategories = [
     {
         id: 1,
@@ -39,6 +38,7 @@ const dataCategories = [
         image: require('../../assets/images/churrasco.jpg')
     }
 ]
+
 const Menu = ({ navigation }) => {
     const [popular, setPopular] = useState([]);
     const [recommended, setRecommended] = useState([]);
@@ -49,13 +49,13 @@ const Menu = ({ navigation }) => {
             setPopular(response.data.companies);
         } catch (err) {
             console.log("ERR Catch:", err);
+            createToastError(err);
         }
     }
     const getRecommended = async () => {
         try {
             const response = await api.get("food/list", {});
             setRecommended(response.data.foods);
-            // setCategories(recommended);
         } catch (err) {
             console.log("ERR Catch:", err);
         }
@@ -65,7 +65,7 @@ const Menu = ({ navigation }) => {
         getPopular();
         getRecommended();
     }, []);
-    console.log(recommended);
+
     return (
         <Container
             showsVerticalScrollIndicator={false}
@@ -99,7 +99,7 @@ const Menu = ({ navigation }) => {
                     showsHorizontalScrollIndicator={false}
                 >
                     {
-                        popular.map(
+                        popular?.map(
                             (item) => (
                                 <Popular key={item._id}>
                                     <PopularImage
