@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { FontAwesome } from '@expo/vector-icons';
 import colors from "../../style/global/colors";
 import AsyncStorage from '@react-native-community/async-storage';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 import {
     Container,
     ContainerLogo,
@@ -24,29 +26,32 @@ const SignIn = ({ navigation }) => {
     const [email, setEmail] = useState("");
     const [password, setPassaword] = useState("");
 
+    const createTost = (message) => {
+        toast.error(message, {
+            position: toast.POSITION.BOTTOM_CENTER
+        });
+    }
     const login = async ({ email, password }) => {
-        try {
-            await api.post("user/login", {
-                email,
-                password,
-            }).then((res) => {
-                console.log("then:", res);
-                if (res.status === 200) {
-                    AsyncStorage.setItem('token', res.data.token);
-                    AsyncStorage.setItem('user', res.data.user);
-                    navigation.navigate('Laricao');
-                }
-                console.log("res:", res.data);
-            }).catch((err) => {
-                console.log("catch:", err);
-            });
-        } catch (error) {
-            console.log("error:", error);
-        }
+        await api.post("user/login", {
+            email,
+            password,
+        }).then((res) => {
+            console.log("then:", res);
+            if (res.status === 200) {
+                AsyncStorage.setItem('token', res.data.token);
+                AsyncStorage.setItem('user', res.data.user);
+                navigation.navigate('Laricao');
+            }
+            res.data.erro != undefined ? createTost(res.data.erro) : createTost(res.data.message);
+
+        }).catch((err) => {
+            createTost(err);
+        });
     };
 
     return (
         <>
+            <ToastContainer />
             <Container>
                 <Form>
                     <ContainerInput>
@@ -77,6 +82,7 @@ const SignIn = ({ navigation }) => {
                     <Link onPress={() => navigation.navigate('SignUp')}>
                         <Text>Não possui conta? <Text color={colors.orange}>Cadastre-se</Text></Text>
                     </Link>
+
                 </Form>
                 <Header>
                     <ContainerTile>
