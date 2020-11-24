@@ -23,17 +23,22 @@ const Favorites = () => {
             console.log(error);
         }
     }
-    // const getSearch = async (text) => {
-    //     try {
-    //         await api.get("user/listFavorites/search", { Name: text }).then((res) => {
-    //             setFavorites(res.data.companies);
-    //         }).catch((erro) => {
-    //             console.log(erro);
-    //         });
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // }
+    const getSearch = async (Name) => {
+        console.log("text:", Name);
+        try {
+            await api.post("user/list/favorites/search",
+                {
+                    Name
+                }).then((res) => {
+                    console.log("RES:", res.data);
+                    setFavorites(res.data.companies);
+                }).catch((erro) => {
+                    console.log(erro);
+                });
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     useEffect(() => {
         getFavorites();
@@ -44,9 +49,8 @@ const Favorites = () => {
             <Content showsVerticalScrollIndicator={false}
                 showsHorizontalScrollIndicator={false}>
                 <ContainerInput>
-                    {/* getSearch */}
                     <FontAwesome name="search" size={20} color={colors.orange} />
-                    {/* <Input placeholder="Buscar" type="text" onChangeText={(text) => getSearch(text)} /> */}
+                    <Input placeholder="Buscar" type="text" onChangeText={(text) => getSearch(text)} />
                 </ContainerInput>
                 <Text color={colors.gray} fontSize={16} fontWeight="bold" marginBottom={20}>Favorites</Text>
                 {

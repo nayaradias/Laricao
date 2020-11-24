@@ -10,7 +10,7 @@ api.interceptors.request.use(async (config) => {
   const token = getData("@token");
   const headers = { ...config.headers };
   // console.log("Token:", token);
-  // console.log("headers:", headers);
+  //console.log("headers:", headers);
   if (token) headers.Authorization = `Bearer ${token}`;
   config.validateStatus = (status) => {
     //console.log("Status:", status);

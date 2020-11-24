@@ -79,7 +79,7 @@ module.exports = {
       });
     }
   },
-  async listFavorites(req, res) {
+  async listFavorites(req, res) {//refazer
     console.log(' res.locals.auth_data.id :', res.locals.auth_data.id);
     try {
       const userFavorites = await User.find({ _id: res.locals.auth_data.id }).select("Favorites");
@@ -112,12 +112,11 @@ module.exports = {
     }
   },
   async search(req, res) {
-    console.log(req.body.Name);
+
     try {
-      
-      const user = await User.find({ Name: req.body.Name });
+      const companies = await Company.find({ Name: { "$regex": `${req.body.Name}`, "$options": "i" } });
       return res.status(200).json({
-        user
+        companies
       });
     }
     catch (err) {
