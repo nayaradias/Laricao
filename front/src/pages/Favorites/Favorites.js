@@ -30,7 +30,6 @@ const Favorites = () => {
                 {
                     Name
                 }).then((res) => {
-                    console.log("RES:", res.data);
                     setFavorites(res.data.companies);
                 }).catch((erro) => {
                     console.log(erro);
