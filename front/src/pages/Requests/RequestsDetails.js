@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Title, Text } from "../../style/global/general";
-import { FontAwesome } from "@expo/vector-icons";
 import colors from "../../style/global/colors";
+import { FontAwesome } from "@expo/vector-icons";
 import {
   Content,
   Card,
@@ -10,9 +10,10 @@ import {
   Banner,
   Row,
   Column,
-} from "../../style/pages/requests";
+  ButtonAberto,
+} from "../../style/pages/requestsDetails";
 
-const Requests = () => {
+const RequestsDetails = () => {
   
   return (
     <Container>
@@ -20,28 +21,29 @@ const Requests = () => {
         <Card>
           <Row>
             <Banner
-              source={require("../../assets/images/espetinho-carne.jpg")}
+              source={require("../../assets/images/loja.jpg")}
             />
+          </Row>
+        </Card>
+      </Content>
+    
+      <Content>
+        <Card>
+          <Row>
             <Column>
               <>
                 <ContentText>
-                  <Text marginLeft={10}>
-                      23/11/20 19:49
-                  </Text>
                   <Title fontWeight={500} marginLeft={10} color={colors.gray}>
-                    Espetinho de Boi
+                    Pizza Hut
                   </Title>
                 </ContentText>
                 <Text marginLeft={11} color={colors.lightgray}>
-                  250g/Un
+                  Rua, Av. Dr. Olivio, 353 - Praia da Costa
                 </Text>
               </>
               <ContainerText>
-                <Text fontWeight="bold" marginLeft={11} color={colors.gray}>
-                  R$ 28,00
-                </Text>
-                <Text fontWeight="bold" marginLeft={60} color={colors.orange}>
-                  Rastrear Pedido
+                <Text marginLeft={11} color={colors.gray}>
+                  4,9 <FontAwesome name="star" size={16} color={colors.yellow} /> (254) 15-30 min Fecha às 23:00 
                 </Text>
               </ContainerText>
             </Column>
@@ -52,4 +54,4 @@ const Requests = () => {
   );
 };
 
-export default Requests;
+export default RequestsDetails;
