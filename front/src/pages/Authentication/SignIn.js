@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { FontAwesome } from '@expo/vector-icons';
 import colors from "../../style/global/colors";
-import AsyncStorage from '@react-native-community/async-storage';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import {
@@ -21,7 +20,7 @@ import {
     Link,
 } from "../../style/pages/signin";
 import api from '../../services/api';
-
+import { storeData, getData } from '../../services/auth';
 const SignIn = ({ navigation }) => {
     const [email, setEmail] = useState("");
     const [password, setPassaword] = useState("");
@@ -38,8 +37,8 @@ const SignIn = ({ navigation }) => {
         }).then((res) => {
             console.log("then:", res);
             if (res.status === 200) {
-                AsyncStorage.setItem('token', res.data.token);
-                AsyncStorage.setItem('user', res.data.user);
+                storeData('token', res.data.token);
+                storeData('user', res.data.user);
                 navigation.navigate('Laricao');
             }
             res.data.erro != undefined ? createTost(res.data.erro) : createTost(res.data.message);

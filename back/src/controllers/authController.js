@@ -80,13 +80,14 @@ module.exports = {
     }
   },
   async listFavorites(req, res) {
+    console.log(' res.locals.auth_data.id :', res.locals.auth_data.id);
     try {
       const userFavorites = await User.find({ _id: res.locals.auth_data.id }).select("Favorites");
 
-      const company = await Company.find({ _id: { $in: userFavorites[0].Favorites } });
+      //const company = await Company.find({ _id: { $in: userFavorites[0].Favorites } });
 
       return res.status(200).json({
-        company
+        userFavorites
       });
     } catch (err) {
       return res.status(400).json({
@@ -110,5 +111,20 @@ module.exports = {
       });
     }
   },
+  async search(req, res) {
+    console.log(req.body.Name);
+    try {
+      
+      const user = await User.find({ Name: req.body.Name });
+      return res.status(200).json({
+        user
+      });
+    }
+    catch (err) {
+      return res.status(400).json({
+        erro: err
+      })
+    }
+  }
 };
 

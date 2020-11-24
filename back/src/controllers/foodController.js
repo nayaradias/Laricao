@@ -21,7 +21,7 @@ module.exports = {
     try {
       const foods = await Food.find({}).populate("Company");
 
-      return res.status(201).json({
+      return res.status(200).json({
         foods,
       });
     } catch (err) {

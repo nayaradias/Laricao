@@ -46,16 +46,18 @@ const Menu = ({ navigation }) => {
     const getPopular = async () => {
         try {
             const response = await api.get("company/listFavorites", {});
+            //console.log('company/listFavorites:', response);
             setPopular(response.data.companies);
         } catch (err) {
             console.log("ERR Catch:", err);
-            createToastError(err);
+            // createToastError(err);
         }
     }
     const getRecommended = async () => {
         try {
             const response = await api.get("food/list", {});
             setRecommended(response.data.foods);
+            // console.log('food/list:', response);
         } catch (err) {
             console.log("ERR Catch:", err);
         }

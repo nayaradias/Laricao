@@ -15,6 +15,7 @@ import SplashScreen from './pages/Home/SplashScreen';
 import Requests from './pages/Requests/Requests';
 import colors from '../src/style/global/colors';
 import { IconTabBar } from './style/global/general';
+import { isAuthenticated } from './services/auth';
 
 
 const Stack = createStackNavigator();
@@ -80,12 +81,12 @@ const StackOptions = {
 const Routes = () => {
     return (
         <NavigationContainer>
-            <Stack.Navigator>
+            <Stack.Navigator initialRouteName={isAuthenticated ? 'Laricao' : 'SignIn'}>
+                {/* <Stack.Screen options={{ headerShown: false }} name="SplashScreen" component={SplashScreen} /> */}
                 <Stack.Screen options={{ headerShown: false }} name="Home" component={Home} />
                 <Stack.Screen name="Laricao" component={LaricaoTabScreen} options={StackBarScreenOptions} />
-                <Stack.Screen name="SignUp" component={SignUp} options={StackOptions}/>
-                <Stack.Screen name="SignIn" component={SignIn} options={StackOptions}/>
-                <Stack.Screen options={{ headerShown: false }} name="SplashScreen" component={SplashScreen} />
+                <Stack.Screen name="SignUp" component={SignUp} options={StackOptions} />
+                <Stack.Screen name="SignIn" component={SignIn} options={StackOptions} />
             </Stack.Navigator>
         </NavigationContainer>
     );
