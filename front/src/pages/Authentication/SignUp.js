@@ -30,20 +30,19 @@ const SignUp = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassaword] = useState("");
   const store = async ({ name, email, password }) => {
-   
-      await api.post("user/store", {
-        Name: name,
-        Email: email,
-        Password: password,
-      }).then((res)=>{
-        res.data.erro != undefined ? createTost(res.data.erro) : navigation.navigate('SignIn');
-      }).catch((error)=>{
-        console.log("error:",error);
-        createTost(error);
-      });
-      
-      
- 
+
+    await api.post("user/store", {
+      Name: name,
+      Email: email,
+      Password: password,
+    }).then((res) => {
+
+      res.data.token === undefined ? createTost(res.data.erro._message) : navigation.navigate('SignIn');
+    }).catch((error) => {
+
+      createTost(error);
+    });
+
   };
   return (
     <>
@@ -84,6 +83,7 @@ const SignUp = ({ navigation }) => {
           <ContainerInput>
             <FontAwesome name="key" size={20} color={colors.orange} />
             <Input placeholder="Senha"
+              secureTextEntry
               type="password"
               required
               name="password"
