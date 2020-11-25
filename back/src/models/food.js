@@ -22,7 +22,7 @@ const FoodSchema = new mongoose.Schema(
       type: String,
       enum: ['Burger', 'Pizza', 'Japonesa', 'Churrasco', 'Outros',]
     },
-
+    Unity: { type: String, required: false },
     UrlPhoto: {
       type: String,
       required: false,

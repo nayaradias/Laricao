@@ -53,7 +53,7 @@ export const PopularImage = styled.Image`
     width:130px;
     border-radius:10px;
 `;
-export const ContainerRecommended = styled.View`
+export const ContainerRecommended = styled.TouchableOpacity`
     width:170px;
     margin:10px ;
     box-shadow: 3px 3px 10px ${colors.lightgray}; 

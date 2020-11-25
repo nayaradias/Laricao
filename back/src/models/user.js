@@ -35,7 +35,27 @@ const UserSchema = new mongoose.Schema(
       type: String,
       required: false,
     },
-    Favorites: [String]
+    Favorites: [String],
+    Requests: [
+      {
+        Id: { type: String, required: false },
+        Name: { type: String, required: false },
+        Unity: { type: String, required: false },
+        Price: { type: Number, required: false },
+        Date: { type: Date, default: Date.now },//pode dar bo
+        Status: { type: String, enum: ['Pedido entregue', 'Em andamento',], required: false },
+        UrlPhoto: { type: String, required: false },
+      }
+    ],
+    Bag: [
+      {
+        Id: { type: String, required: false },
+        Name: { type: String, required: false },
+        Unity: { type: String, required: false },
+        Price: { type: Number, required: false },
+        UrlPhoto: { type: String, required: false },
+      }
+    ]
   },
   {
     timestamps: true,
@@ -45,10 +65,10 @@ const UserSchema = new mongoose.Schema(
 UserSchema.pre('save', function (next) {
   let user = this;
   if (!user.isModified('Password'))
-      return next();
+    return next();
   bcrypt.hash(user.Password, 10, (err, bcrypt) => {
-      user.Password = bcrypt;
-      return next();
+    user.Password = bcrypt;
+    return next();
   });
 });
 

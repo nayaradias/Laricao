@@ -3,26 +3,34 @@ import colors from "../global/colors";
 
 export const Row = styled.View`
     flex-direction: row;
+    padding: ${(props) => props.paddingTop || 0}px
+    ${(props) => props.paddingRight || 0}px
+    ${(props) => props.paddingBottom || 0}px
+    ${(props) => props.paddingLeft || 0}px;
 `;
 
 export const Column = styled.View`
     flex-direction: column;
 `;
+export const Scroll = styled.ScrollView`
+    padding:5px 0px;
+`;
 
-export const Content = styled.View `
+export const Content = styled.View`
     flex: 1;
     justify-content: top;
     align-items: top;
     align-self: top;
+
 `;
 
 export const Card = styled.View`
     border-radius: 10px;
     background-color: ${colors.white};
     border: none;
-    padding: 20px;
-    box-shadow: 10px 10px 30px ${colors.lightgray};
-    margin: 5px 10px 5px 40px;
+    padding: 15px;
+    box-shadow: 1px 1px 14px ${colors.lightgray};
+    margin: 15px 10px 5px 40px;
 `;
 
 export const ContentText = styled.View`
@@ -114,10 +122,12 @@ export const ViewTransaparent = styled.View`
 export const ButtonPedido = styled.TouchableOpacity`
     border-radius: 25px;
     background-image: linear-gradient(to right, #ff9b00, #fba900, #f7b600, #f1c300, #ebcf12);
-    width: 335px;
-    margin-left: -37px;
-    margin-top: 10px;
+    width: 100%;
+    /* margin-left: -37px; */
+    margin-top: 20px;
     align-items: center;
+    justify-content:center;
+    align-self:center;
     color: ${colors.white};
     padding: 18px;
     font-weight: bold;
@@ -136,8 +146,8 @@ export const CardBottom = styled.View`
     border-top-right-radius: 15px;
     background-color: ${colors.white};
     border: none;
-    padding: 50px;
-    box-shadow: 5px 15px 30px ${colors.gray};
+    padding: 50px 20px;
+    box-shadow: 1px 1px 14px ${colors.lightgray};
     position: absolute;
     bottom: 0;
     width: 100%;
@@ -157,4 +167,18 @@ export const ButtonTrash = styled.TouchableOpacity`
 
 export const Swipe = styled.View`
     background-color: ${colors.orange};
+`;
+export const Button = styled.TouchableOpacity`
+    align-items: center;
+    justify-content:center;
+
+    padding: 15px;
+    border-radius: 25px;
+    background-color: ${colors.orange};
+    margin-top:20px;
+    width: 100%;
+`;
+export const ContainerButtonBack = styled.View`
+    padding: 50px 20px;
+    margin:40px 0px;
 `;

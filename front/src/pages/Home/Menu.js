@@ -121,7 +121,7 @@ const Menu = ({ navigation }) => {
                 {
                     recommended.map(
                         (item) => (
-                            <ContainerRecommended key={item._id}>
+                            <ContainerRecommended key={item._id} onPress={() => navigation.navigate('Bag', { food: item })}>
                                 <RecommendedImage
                                     source={{
                                         uri: "http://localhost:3001/" + item.UrlPhoto,
