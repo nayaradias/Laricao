@@ -1,6 +1,10 @@
 import styled from "styled-components/native";
 import colors from "../global/colors";
 
+export const Scroll = styled.ScrollView`
+    padding:5px 0px;
+`;
+
 export const Row = styled.View`
     flex-direction: row;
 `;
@@ -16,17 +20,16 @@ export const Content = styled.View `
     align-self: top;
 `;
 
-export const Card = styled.View`
+export const Card = styled.TouchableOpacity`
     border-radius: 10px;
     background-color: ${colors.white};
     border: none;
-    padding: 20px;
+    padding: 10px 20px;
     box-shadow: 10px 10px 30px ${colors.lightgray};
     margin: 5px 10px 5px 40px;
 `;
 
 export const ContentText = styled.View`
-    //flex-direction: row; 
     justify-content: space-between;
     margin: 10px 0px;
 `;
@@ -84,9 +87,8 @@ export const ContainerButton = styled.View`
 export const ContainerText = styled.View`
     flex-direction: row; 
     align-items: center;
-    // justify-content: space-between;
-    margin: 5px 0px;
-    margin-top: 10px;
+
+    margin: 3px 0px;
 `;
 
 export const ButtonLess = styled.TouchableOpacity`
@@ -125,7 +127,7 @@ export const ButtonPedido = styled.TouchableOpacity`
 
 export const Banner = styled.Image`
     width: 90px;
-    height: 110px;
+    height: 90px;
     border-radius: 10px;
     margin-left: -50px;
     margin-top: 5px;

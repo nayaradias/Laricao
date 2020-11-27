@@ -82,8 +82,9 @@ const StackOptions = {
 const Routes = () => {
     return (
         <NavigationContainer>
-            <Stack.Navigator initialRouteName={isAuthenticated ? 'Laricao' : 'SignIn'}>
-                <Stack.Screen options={{ headerShown: false }} name="SplashScreen" component={SplashScreen} />
+            {/* <Stack.Navigator initialRouteName={isAuthenticated ? 'Laricao' : 'SignIn'}> */}
+            <Stack.Navigator >
+                {/* <Stack.Screen options={{ headerShown: false }} name="SplashScreen" component={SplashScreen} /> */}
                 <Stack.Screen options={{ headerShown: false }} name="Home" component={Home} />
                 <Stack.Screen name="Laricao" component={LaricaoTabScreen} options={StackBarScreenOptions} />
                 <Stack.Screen name="SignUp" component={SignUp} options={StackOptions} />

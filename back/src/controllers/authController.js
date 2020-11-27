@@ -124,6 +124,19 @@ module.exports = {
         erro: err
       })
     }
+  },
+  async listRequests(req, res) {
+    try {
+      console.log('Resquests:', res.locals.auth_data.id);
+      const users = await User.find({ _id: res.locals.auth_data.id });
+      return res.status(200).json({
+        users
+      });
+    } catch (err) {
+      return res.status(400).json({
+        erro: err,
+      });
+    }
   }
 };
 
