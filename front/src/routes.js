@@ -43,7 +43,7 @@ const StackBarScreenOptions = {
     },
     headerTintColor: colors.gray,
     headerTitleStyle: {
-        alignSelf: 'end',
+        alignSelf: 'flex-end',
     },
 };
 
@@ -89,7 +89,7 @@ const Routes = () => {
                 <Stack.Screen name="Laricao" component={LaricaoTabScreen} options={StackBarScreenOptions} />
                 <Stack.Screen name="SignUp" component={SignUp} options={StackOptions} />
                 <Stack.Screen name="SignIn" component={SignIn} options={StackOptions} />
-                <Stack.Screen name="RequestsDetails" component={RequestsDetails} options={StackOptions} />
+                <Stack.Screen title="Details" name="Request Details" component={RequestsDetails} options={StackOptions} />
             </Stack.Navigator>
         </NavigationContainer>
     );

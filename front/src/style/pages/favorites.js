@@ -16,6 +16,7 @@ export const Input = styled.TextInput`
     margin-left: 8px;
     font-size: 14px;
     color: ${colors.darkgray};
+    border:none;
 `;
 
 export const Content = styled.ScrollView`
@@ -27,7 +28,7 @@ export const Card = styled.View`
     background-color: ${colors.white};
     box-shadow: 1px 1px 14px ${colors.lightgray};
     margin: 15px 10px 15px 40px;
-    padding: 0px 20px;
+    padding: 5px 20px;
     border-radius: 10px;
     flex-direction: row;
     
@@ -94,14 +95,14 @@ export const CardRanking = styled.View`
 
 export const CardHeart = styled.View`
     flex-direction: row;
-    margin-left: 155px;
-    margin-top: -18px;
-    padding: 10px;
-    justify-content:flex-end;
+    margin-left: 167px;
+    margin-top: -23px;
+    padding: 5px;
+    justify-content:center;
     border-radius: 100px;
     background-color: ${colors.white};
     box-shadow: 1px 1px 14px ${colors.lightgray};
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
     align-items:center;
 `;

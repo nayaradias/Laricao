@@ -30,6 +30,19 @@ module.exports = {
       });
     }
   },
+  async listById(req, res) {
+    try {
+      console.log(req.body.id);
+      const foods = await Food.find({ _id: req.body.id });
+      return res.status(200).json({
+        foods,
+      });
+    } catch (err) {
+      return res.status(400).json({
+        erro: err,
+      });
+    }
+  },
   async listByCategory(req, res) {
     try {
       const foods = await Food.find({ Category: req.body.Category }).sort({
@@ -62,5 +75,5 @@ module.exports = {
         erro: err,
       });
     }
-  },
+  }
 };

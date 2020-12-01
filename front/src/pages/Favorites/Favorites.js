@@ -61,7 +61,7 @@ const Favorites = () => {
                                 </CardImageContainer>
                                 <CardText>
                                     <CardHeart>
-                                        <FontAwesome name="heart" size={20} color={colors.red} />
+                                        <FontAwesome name="heart" size={20} color={colors.orange} />
                                     </CardHeart>
                                     <Title fontWeight="bold" fontSize={16} numberOfLines={1} ellipsizeMode='head'>{item.Name}</Title>
                                     <Text color={colors.lightgray} numberOfLines={1} ellipsizeMode='head'>{item.Email}</Text>

@@ -23,8 +23,10 @@ const UserSchema = new mongoose.Schema(
       required: false,
     },
     Address: {
-      type: String,
-      required: false,
+      State: { type: String, required: false },
+      City: { type: String, required: false },
+      Neighborhood: { type: String, required: false },
+      Number: { type: Number, required: false }
     },
     Payment: {
       type: String,
@@ -45,6 +47,7 @@ const UserSchema = new mongoose.Schema(
         Date: { type: Date, default: Date.now },//pode dar bo
         Status: { type: String, enum: ['Pedido entregue', 'Em andamento',], required: false },
         UrlPhoto: { type: String, required: false },
+        Company: { type: String, required: false },
       }
     ],
     Bag: [
