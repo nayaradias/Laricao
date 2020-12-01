@@ -14,6 +14,7 @@ import Menu from './pages/Home/Menu';
 import SplashScreen from './pages/Home/SplashScreen';
 import Requests from './pages/Requests/Requests';
 import RequestsDetails from './pages/Requests/RequestsDetails';
+import CompanyDetails from './pages/Home/CompanyDetails';
 import colors from '../src/style/global/colors';
 import { IconTabBar } from './style/global/general';
 import { isAuthenticated } from './services/auth';
@@ -89,7 +90,8 @@ const Routes = () => {
                 <Stack.Screen name="Laricao" component={LaricaoTabScreen} options={StackBarScreenOptions} />
                 <Stack.Screen name="SignUp" component={SignUp} options={StackOptions} />
                 <Stack.Screen name="SignIn" component={SignIn} options={StackOptions} />
-                <Stack.Screen title="Details" name="Request Details" component={RequestsDetails} options={StackOptions} />
+                <Stack.Screen name="Request Details" component={RequestsDetails} options={StackOptions} />
+                <Stack.Screen name="Company Details" component={CompanyDetails} options={StackOptions} />
             </Stack.Navigator>
         </NavigationContainer>
     );
