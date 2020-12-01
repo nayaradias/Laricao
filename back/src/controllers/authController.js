@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
 const Company = mongoose.model("Company");
+
+
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
@@ -123,6 +125,20 @@ module.exports = {
       return res.status(400).json({
         erro: err
       })
+    }
+  },
+  async listRequests(req, res) {
+    try {
+     
+      const users = await User.find({ _id: req.body.id }); 
+      return res.status(200).json({
+        users
+      });
+      
+    } catch (err) {
+      return res.status(400).json({
+        erro: err,
+      });
     }
   }
 };

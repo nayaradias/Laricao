@@ -10,12 +10,14 @@ api.interceptors.request.use(async (config) => {
   const token = getData("@token");
   const headers = { ...config.headers };
   // console.log("Token:", token);
-  //console.log("headers:", headers);
+  // console.log("headers:", headers);
+  //x-access-token
   if (token) headers.Authorization = `Bearer ${token}`;
+  // if (token) headers.Authorization = `Bearer ${token}`;
   config.validateStatus = (status) => {
-    //console.log("Status:", status);
+  console.log("Status:", status);
     if (status === 401) {
-      logout();
+      //logout();
     } else {
       return status;
     }

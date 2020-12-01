@@ -85,7 +85,7 @@ const Menu = ({ navigation }) => {
                         dataCategories.map(
                             (item) => (
                                 <Categories key={item.id}>
-                                    <CategoriesImage source={{ uri: item.image }} />
+                                    <CategoriesImage source={item.image} />
                                     <Title fontWeight="bold" fontSize={16} color={colors.grey}>{item.Name}</Title>
                                 </Categories>
                             )

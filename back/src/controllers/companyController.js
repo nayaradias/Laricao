@@ -39,7 +39,7 @@ module.exports = {
   async listFavorites(req, res) {
     try {
       const companies = await Company.find({}).limit(10).sort({createdAt:1});
-      return res.status(201).json({
+      return res.status(200).json({
         companies
       });
     } catch (err) {

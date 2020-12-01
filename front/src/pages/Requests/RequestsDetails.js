@@ -1,55 +1,77 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Title, Text } from "../../style/global/general";
 import colors from "../../style/global/colors";
+import api from "../../services/api";
 import { FontAwesome } from "@expo/vector-icons";
 import {
-  Content,
   Card,
-  ContentText,
-  ContainerText,
   Banner,
-  Row,
-  Column,
-  ButtonAberto,
+  CardHeader,
+  ContainerText,
+  ContainerInfo
 } from "../../style/pages/requestsDetails";
+import moment from 'moment';
+const RequestsDetails = ({ navigation, route }) => {
+  const [request, setRequest] = useState(null);
 
-const RequestsDetails = () => {
-  
+
+  useEffect(() => {
+    if (route?.params) {
+
+      api.post("food/list/request/", { id: route.params.id }).then((res) => {
+        setRequest(res.data?.foods[0]);
+      }).catch((erro) => {
+        console.log(erro);
+      });
+    }
+  }, []);
+
+  console.log('request:', request);
   return (
     <Container>
-      <Content>
-        <Card>
-          <Row>
-            <Banner
-              source={require("../../assets/images/loja.jpg")}
-            />
-          </Row>
-        </Card>
-      </Content>
-    
-      <Content>
-        <Card>
-          <Row>
-            <Column>
-              <>
-                <ContentText>
-                  <Title fontWeight={500} marginLeft={10} color={colors.gray}>
-                    Pizza Hut
-                  </Title>
-                </ContentText>
-                <Text marginLeft={11} color={colors.lightgray}>
-                  Rua, Av. Dr. Olivio, 353 - Praia da Costa
+      <Banner
+        source={{ uri: "http://localhost:3001/" + request?.UrlPhoto }}
+      />
+      <CardHeader>
+        <Title fontWeight={500} color={colors.gray}>
+          {request?.Name}
+        </Title>
+        <Text color={colors.lightgray}>
+          {moment(request?.updatedAt).format('MMM DD YYYY h:mm')}
+        </Text>
+      </CardHeader>
+      <Card>
+        <Title fontWeight={500} color={colors.gray}>
+          {request?.Category}
+        </Title>
+        <Text marginLeft={10}>
+                Preço: Un/R${request?.Price}
                 </Text>
-              </>
-              <ContainerText>
-                <Text marginLeft={11} color={colors.gray}>
-                  4,9 <FontAwesome name="star" size={16} color={colors.yellow} /> (254) 15-30 min Fecha às 23:00 
+        {
+          request?.Options?.length > 0 && (
+            <ContainerText>
+              <FontAwesome name="check" size={20} color={colors.orange} />
+              <Text marginLeft={10}>
+                Complementos:
                 </Text>
-              </ContainerText>
-            </Column>
-          </Row>
-        </Card>
-      </Content>
+            </ContainerText>
+          )
+        }
+        {
+          request?.Options?.map((option) => (
+            <>
+              <ContainerInfo>
+                <Text color={colors.lightgray}>
+                  {option?.Name}
+                  <Text color={colors.lightgray} marginLeft={5}>
+                    R${option?.Price}
+                  </Text>
+                </Text>
+              </ContainerInfo>
+            </>
+          ))
+        }
+      </Card>
     </Container>
   );
 };

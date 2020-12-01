@@ -159,7 +159,7 @@ const Bag = ({ navigation, route }) => {
       {!food && (
         <ContainerButtonBack>
           <Row>
-            <Title fontWeight="bold" color={colors.gray}>Para realizar um Pedido selecione um item do menu! !</Title>
+            <Title fontWeight="bold" textAlign="center" color={colors.gray}>Para realizar um Pedido selecione um item do menu! !</Title>
           </Row>
           <Row>
             <Button onPress={() => navigation.navigate('Menu')}>
