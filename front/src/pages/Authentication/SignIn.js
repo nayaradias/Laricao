@@ -2,8 +2,8 @@ import React, { useState, useCallback } from "react";
 import { FontAwesome } from '@expo/vector-icons';
 import colors from "../../style/global/colors";
 
-// import { toast, ToastContainer } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.min.css';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 import {
     Container,
     ContainerLogo,
@@ -30,11 +30,11 @@ const SignIn = ({ navigation }) => {
     const toggleAlert = useCallback(() => {
         setVisible(!visible);
     }, [visible]);
-    // const createTost = (message) => {
-    //     toast.error(message, {
-    //         position: toast.POSITION.BOTTOM_CENTER
-    //     });
-    // }
+    const createTost = (message) => {
+        toast.error(message, {
+            position: toast.POSITION.BOTTOM_CENTER
+        });
+    }
     const login = async ({ email, password }) => {
         await api.post("user/login", {
             email,
@@ -46,20 +46,20 @@ const SignIn = ({ navigation }) => {
                 storeData('user', res.data.user);
                 navigation.navigate('Laricao');
             }
-            // res.data.erro != undefined ? createTost(res.data.erro) : createTost(res.data.message);
-             res.data.erro != undefined && toggleAlert;
+            res.data.erro != undefined ? createTost(res.data.erro) : createTost(res.data.message);
+            res.data.erro != undefined && toggleAlert;
         }).catch((err) => {
-            // createTost(err);
-           
+            createTost(err);
+
         });
     };
 
     return (
         <>
-            {/* <ToastContainer /> */}
+            <ToastContainer />
             <Container>
                 <Form>
-                  
+
                     <ContainerInput>
                         <FontAwesome name="envelope" size={20} color={colors.orange} />
                         <Input placeholder="Email"

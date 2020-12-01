@@ -28,6 +28,7 @@ export const Row = styled.View`
 `;
 export const ContainerScrollView = styled.ScrollView`
     padding:10px;
+
 `;
 
 export const Categories = styled.TouchableOpacity`

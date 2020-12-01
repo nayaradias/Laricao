@@ -18,13 +18,13 @@ import {
   Link,
 } from "../../style/pages/signup";
 import api from '../../services/api';
-// import { toast, ToastContainer } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.min.css';
-// const createTost = (message) => {
-//   toast.error(message, {
-//     position: toast.POSITION.BOTTOM_CENTER
-//   });
-// }
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
+const createTost = (message) => {
+  toast.error(message, {
+    position: toast.POSITION.BOTTOM_CENTER
+  });
+}
 const SignUp = ({ navigation }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -37,16 +37,16 @@ const SignUp = ({ navigation }) => {
       Password: password,
     }).then((res) => {
 
-      // res.data.token === undefined ? createTost(res.data.erro._message) : navigation.navigate('SignIn');
+     res.data.token === undefined ? createTost(res.data.erro._message) : navigation.navigate('SignIn');
     }).catch((error) => {
 
-      // createTost(error);
+      createTost(error);
     });
 
   };
   return (
     <>
-      {/* <ToastContainer /> */}
+      <ToastContainer />
       <Container>
         <Header>
           <ContainerTile>
