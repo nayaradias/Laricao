@@ -37,7 +37,7 @@ const RequestsDetails = ({ navigation, route }) => {
           {request?.Name}
         </Title>
         <Text color={colors.lightgray}>
-          {moment(request?.updatedAt).format('MMM DD YYYY h:mm')}
+          {moment(request?.updatedAt).format('DD MMM YYYY h:mm')}
         </Text>
       </CardHeader>
       <Card>
@@ -50,7 +50,7 @@ const RequestsDetails = ({ navigation, route }) => {
         {
           request?.Options?.length > 0 && (
             <ContainerText>
-              <FontAwesome name="check" size={20} color={colors.orange} />
+              <FontAwesome name="list-alt" size={20} color={colors.orange} />
               <Text marginLeft={10}>
                 Complementos:
                 </Text>

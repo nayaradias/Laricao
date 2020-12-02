@@ -26,7 +26,7 @@ const CompanyDetails = ({ navigation, route }) => {
             />
             <Card>
                 <ContainerText>
-                    <FontAwesome name="check" size={40} color={colors.orange} style={{ margin: 10 }} />
+                    {/* <FontAwesome name="check" size={40} color={colors.orange} style={{ margin: 10 }} /> */}
                     <Title fontWeight={500} color={colors.gray} >
                         {company?.Name}
                     </Title>
