@@ -2,10 +2,12 @@ import styled from "styled-components/native";
 import colors from "../global/colors";
 
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
-import Entypo from '@expo/vector-icons/Entypo';
 
 import {Text, Title} from "../global/general";
 
+import { TextInput } from 'react-native';
+
+import { FontAwesome } from '@expo/vector-icons'; 
 
 
 
@@ -66,28 +68,42 @@ export const MenuTitle = styled(Title)`
 font-size: 16px;
 margin-bottom: 32px;
 `;
-export const MoreTitle = styled(Title)`
-font-size: 16px;
-margin-top: 32px;
-margin-bottom: 32px;
+
+export const InputText = styled(Text)`
+margin-bottom: 5px;
 `;
 
-export const ContentMenu = styled.View`
-flex: 1;
+export const Input = styled(TextInput)`
+border-width: 1px;
+border-color: ${colors.darkgray};
+border-radius: 5px;
+height: 30px;
+margin-bottom: 24px;
+`;
+
+
+export const ContainerCheckBox = styled.TouchableOpacity`
+align-items: center;
+justify-content: flex-start;
+width: 32px;
+border: 2px solid ${colors.darkgray};
+padding: 2px;
+border-radius: 5px;
+`;
+
+export const IconCheck = styled(FontAwesome)`
+color: ${props => props.color || colors.transparent};
+`;
+
+export const ContainerPagamentos = styled.View`
 flex-direction: row;
-marginBottom: 16px;
+justify-content: space-between;
+`;
+
+export const Column = styled.View`
+flex-direction: column;
 align-items: center;
 `;
 
-export const ArrowIcon = styled(MaterialIcons) `
-font-size: 22px;
-color: ${colors.orange};
-margin-left: auto;
-`;
 
-export const Icon = styled(Entypo)`
-font-size: 22px;
-color: ${colors.orange};
-margin-right: 8px;
-`;
 

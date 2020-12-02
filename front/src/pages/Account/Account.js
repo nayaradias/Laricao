@@ -19,13 +19,14 @@ UserEmail
 } 
 from "../../style/pages/Account";
 import colors from "../../style/global/colors";
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
 
 
 
 
-const Account = () => {
+const Account = ({navigation}) => {
     return (
         <Container >
             <Background>
@@ -43,7 +44,7 @@ const Account = () => {
                         
                         <ContentMenu>
                             <Icon name ='location-pin'/>
-                            <Text>Endereço</Text>
+                            <TouchableOpacity onPress={() => navigation.navigate('Addres')}>Endereço</TouchableOpacity>
                             <ArrowIcon name ='keyboard-arrow-right'/>
                         </ContentMenu>
 
