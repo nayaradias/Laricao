@@ -22,7 +22,7 @@ import colors from "../../style/global/colors";
 import api from '../../services/api';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
-import { storeData } from '../../services/auth';
+import { storeData, logout } from '../../services/auth';
 const createTost = (message) => {
     toast.error(message, {
         position: toast.POSITION.BOTTOM_CENTER
@@ -59,7 +59,8 @@ const AccountEdit = ({ navigation, route }) => {
             Payment: payment,
         }).then((res) => {
             if (!res.data.erro) {
-                storeData('user', res.data.user);
+                // storeData('user', res.data.user);
+                logout();
                 navigation.navigate('Account');
             } else
                 createTost(res.data.erro);

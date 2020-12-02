@@ -6,7 +6,7 @@ export const Content = styled.View`
     box-shadow: 0px 2px 8px ${colors.darkgray};
     margin:32px;
     border-radius:10px;
-    height:65%;
+    height:66%;
     padding: 16px;
 `;
 
@@ -54,6 +54,33 @@ export const ContentFooter = styled.TouchableOpacity`
     align-items: center;
     justify-content:flex-start;
 
-    margin-top:${props=>props.marginTop || 0}px;
+    margin-top:${props => props.marginTop || 0}px;
 `;
+
+export const ContainerLanguage = styled.View`
+  justify-content: space-between;
+  align-items: center;
+  flex-direction:row;
+
+  width: 100%;
+  /* padding: 0px 5px 0px 5px; */
+  background-color: ${colors.transparent};
+`;
+
+export const ButtomLanguage = styled.TouchableOpacity`
+  justify-content: center;
+  align-items: center;
+
+  background-color: ${colors.transparent};
+`;
+export const IconLanguage = styled.Image`
+  justify-content: center;
+  align-items: center;
+  align-self:center;
+
+  width:${props => props.width || 30}px;
+  height:${props => props.height || 30}px;  
+  background-color: ${colors.transparent};
+`;
+
 

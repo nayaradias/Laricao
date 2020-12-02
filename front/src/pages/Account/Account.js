@@ -11,7 +11,10 @@ import {
     Circle,
     Avatar,
     ContentMenu,
-    ContentFooter
+    ContentFooter,
+    ContainerLanguage,
+    ButtomLanguage,
+    IconLanguage,
 }
     from "../../style/pages/Account";
 import colors from "../../style/global/colors";
@@ -21,6 +24,10 @@ import moment from 'moment';
 import api from "../../services/api";
 const Account = ({ navigation }) => {
     const [user, setUser] = useState(null);
+    const [language, setLanguage] = useState('pt_BR');
+    const [isOpenLanguage, setIsOpenLanguage] = useState(false);
+
+    const handleChangeLanguage = () => setIsOpenLanguage(!isOpenLanguage);
 
     const getUser = async () => {
         try {
@@ -58,10 +65,28 @@ const Account = ({ navigation }) => {
                 <Content>
                     <Title fontFamily="Lobster">Minha Conta</Title>
 
-                    <ContentMenu onPress={() => navigation.navigate('Account Details', { user })}>
-                        <Text fontFamily="Lobster">Endereço</Text>
-                        <FontAwesome size={20} color={colors.orange} name='chevron-right' />
+                    <ContentMenu onPress={handleChangeLanguage}>
+                        <Text fontFamily="Lobster">Idioma</Text>
+                        <FontAwesome size={20} color={colors.orange} name={isOpenLanguage ? 'chevron-down' : 'chevron-right'} />
                     </ContentMenu>
+                    {
+                        isOpenLanguage && (
+                            <ContainerLanguage>
+                                <ButtomLanguage onPress={() => setLanguage('pt_BR')}>
+                                    <IconLanguage source={require('../../assets/icons/brazil.svg')} />
+                                    <Text fontWeight={language === 'pt_BR' && 'bold'} fontFamily={language === 'pt_BR' && 'Lobster'} fontSize={12} marginTop={2} color={language === 'pt_BR' && colors.orange}>pt-BR</Text>
+                                </ButtomLanguage>
+                                <ButtomLanguage onPress={() => setLanguage('en_US')}>
+                                    <IconLanguage source={require('../../assets/icons/united-states.svg')} />
+                                    <Text fontWeight={language === 'en_US' && 'bold'} fontFamily={language === 'en_US' && 'Lobster'} fontSize={12} marginTop={2} color={language === 'en_US' && colors.orange}>en-US</Text>
+                                </ButtomLanguage>
+                                <ButtomLanguage onPress={() => setLanguage('es_US')}>
+                                    <IconLanguage source={require('../../assets/icons/spain.svg')} />
+                                    <Text fontWeight={language === 'es_US' && 'bold'} fontFamily={language === 'es_US' && 'Lobster'} fontSize={12} marginTop={2} color={language === 'es_US' && colors.orange}>es-US</Text>
+                                </ButtomLanguage>
+                            </ContainerLanguage>
+                        )
+                    }
 
                     <ContentMenu onPress={() => { logout(); navigation.navigate('Bag') }}>
                         <Text fontFamily="Lobster">Pagamento</Text>
