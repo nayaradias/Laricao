@@ -9,6 +9,7 @@ const auth = require("./middlewares/auth");
 //Routes User
 routes.post("/user/store", authController.store);
 routes.post("/user/login", authController.login);
+routes.post("/user/edit", authController.edit);
 routes.get("/user/list", authController.list);
 routes.get("/user/list/favorites", authController.listFavorites);
 routes.post("/user/list/requests", authController.listRequests);

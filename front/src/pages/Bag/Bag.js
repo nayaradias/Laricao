@@ -98,11 +98,11 @@ const Bag = ({ navigation, route }) => {
                     </ContainerButton>
                   </>
                   <ContainerText>
-                    <Text fontWeight="bold" marginLeft={11} color={colors.gray}>
+                    <Text marginRight={10} fontWeight="bold" marginLeft={11} color={colors.gray}>
                       R$ {price},00
                   </Text>
                     <Text marginRight={10} color={colors.orange}>
-                      R$ {price},00
+                      R$  {price},00
                 </Text>
                   </ContainerText>
                 </Column>
@@ -132,7 +132,7 @@ const Bag = ({ navigation, route }) => {
                 <Title color={colors.darkgray}>Taxa de Entrega</Title>
               </ContentSubTitle1>
               <ContentSubTitle3>
-                <Title color={colors.green} fontWeight="bold">
+                <Title color={colors.green} marginRight={30} fontWeight="bold">
                   {" "}
                 Grátis
               </Title>
@@ -145,7 +145,7 @@ const Bag = ({ navigation, route }) => {
               </Title>
               </ContentSubTitle1>
               <ContentSubTitle4>
-                <Title color={colors.darkgray} fontWeight="bold">
+                <Title color={colors.darkgray} marginRight={20} fontWeight="bold">
                   R${price},00
               </Title>
               </ContentSubTitle4>

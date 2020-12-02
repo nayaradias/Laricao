@@ -14,6 +14,9 @@ import Menu from './pages/Home/Menu';
 import SplashScreen from './pages/Home/SplashScreen';
 import Requests from './pages/Requests/Requests';
 import RequestsDetails from './pages/Requests/RequestsDetails';
+import CompanyDetails from './pages/Home/CompanyDetails';
+import AccountDetails from './pages/Account/AccountDetails';
+import AccountEdit from './pages/Account/AccountEdit';
 import colors from '../src/style/global/colors';
 import { IconTabBar } from './style/global/general';
 import { isAuthenticated } from './services/auth';
@@ -83,13 +86,16 @@ const Routes = () => {
     return (
         <NavigationContainer>
             {/* <Stack.Navigator initialRouteName={isAuthenticated ? 'Laricao' : 'SignIn'}> */}
-            <Stack.Navigator >
+            <Stack.Navigator>
                 {/* <Stack.Screen options={{ headerShown: false }} name="SplashScreen" component={SplashScreen} /> */}
                 <Stack.Screen options={{ headerShown: false }} name="Home" component={Home} />
                 <Stack.Screen name="Laricao" component={LaricaoTabScreen} options={StackBarScreenOptions} />
                 <Stack.Screen name="SignUp" component={SignUp} options={StackOptions} />
                 <Stack.Screen name="SignIn" component={SignIn} options={StackOptions} />
-                <Stack.Screen title="Details" name="Request Details" component={RequestsDetails} options={StackOptions} />
+                <Stack.Screen name="Request Details" component={RequestsDetails} options={StackOptions} />
+                <Stack.Screen name="Company Details" component={CompanyDetails} options={StackOptions} />
+                <Stack.Screen name="Account Details" component={AccountDetails} options={StackOptions}/>
+                <Stack.Screen name="Account Edit" component={AccountEdit} options={StackOptions}/>
             </Stack.Navigator>
         </NavigationContainer>
     );

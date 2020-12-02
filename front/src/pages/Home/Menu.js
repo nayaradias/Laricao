@@ -103,7 +103,7 @@ const Menu = ({ navigation }) => {
                     {
                         popular?.map(
                             (item) => (
-                                <Popular key={item._id}>
+                                <Popular key={item._id} onPress={() => navigation.navigate('Company Details', { item })}>
                                     <PopularImage
                                         source={{
                                             uri: "http://localhost:3001/" + item.UrlPhoto,

@@ -129,17 +129,53 @@ module.exports = {
   },
   async listRequests(req, res) {
     try {
-     
-      const users = await User.find({ _id: req.body.id }); 
+
+      const users = await User.find({ _id: req.body.id });
       return res.status(200).json({
         users
       });
-      
+
     } catch (err) {
       return res.status(400).json({
         erro: err,
       });
     }
-  }
+  },
+  async edit(req, res) {
+    console.log('Edit:', req.body);
+    try {
+
+      await User.findOneAndUpdate({ _id: req.body.id },
+        {
+          $set:
+          {
+            Name: req.body.Name,
+            PhoneNumber: req.body.PhoneNumber,
+            Payment: req.body.Payment,
+            Address: {
+              State: req.body.State,
+              City: req.body.City,
+              Neighborhood: req.body.Neighborhood,
+              Number: req.body.Number
+            }
+          }
+        }, function (err, user) {
+          if (!err) {
+            return res.status(200).json({
+              user
+            });
+
+          }
+          return res.status(500).json({
+            erro: err,
+          });
+        });
+
+    } catch (err) {
+      return res.status(400).json({
+        erro: err,
+      });
+    }
+  },
 };
 
