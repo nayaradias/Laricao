@@ -149,9 +149,12 @@ module.exports = {
         {
           $set:
           {
-            Password:req.body.Password,
             Name: req.body.Name,
             PhoneNumber: req.body.PhoneNumber,
+            State: req.body.State,
+            City: req.body.City,
+            Neighborhood: req.body.Neighborhood,
+            Number: req.body.Number
           }
         }
       );

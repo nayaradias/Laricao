@@ -9,7 +9,9 @@ import {
     ContentMenu,
     ContainerInput,
     Input,
-    Buttom
+    Buttom,
+    ContainerPayment,
+    ButtomPayment
 }
     from "../../style/pages/accountEdit";
 
@@ -27,20 +29,31 @@ const createTost = (message) => {
 const AccountEdit = ({ navigation, route }) => {
     const [user, setUser] = useState(null);
     const [name, setName] = useState("");
-    const [password, setPassaword] = useState("");
+
     const [phoneNumber, setPhoneNumber] = useState(null);
+    const [state, setState] = useState("");
+    const [city, setCity] = useState("");
+    const [neighborhood, setNeighborhood] = useState("");
+    const [number, setNumber] = useState("");
+    const [payment, setPayment] = useState("");
+    const [activePayment, setActivePayment] = useState("");
+
     useEffect(() => {
         if (route?.params)
             setUser(route?.params.user);
+        setActivePayment(route?.params.user.Payment);
     }, []);
-    const store = async ({ name, phoneNumber, password }) => {
+    const store = async ({ name, phoneNumber, state, city, neighborhood, number, payment }) => {
 
         await api.post("user/edit", {
             id: user._id,
-            Email: user.Email,
-            Password: password,
             Name: name,
             PhoneNumber: phoneNumber,
+            State: state,
+            City: city,
+            Neighborhood: neighborhood,
+            Number: number,
+            Payment: payment,
         }).then((res) => {
             console.log('store on edit:', res.data);
             res.data.user.ok !== 1 ? createTost("Erro na atualizaçao ") : navigation.navigate('Account');
@@ -50,7 +63,7 @@ const AccountEdit = ({ navigation, route }) => {
         });
 
     };
-    console.log("user Edit:", user);
+    // console.log("activePayment:", activePayment);
     return (
         <>
             <ToastContainer />
@@ -59,16 +72,7 @@ const AccountEdit = ({ navigation, route }) => {
                     <ContentMenu>
                         <Title fontFamily="Lobster" textAlign="center">Editar Conta</Title>
                         <FontAwesome name="edit" size={24} color={colors.orange} />
-                        {/* 
-  
-  // Address: 
-  //   State: { type: String, required: false },
-  //   City: { type: String, required: false },
-  //   Neighborhood: { type: String, required: false },
-  //   Number: { type: Number, required: false }
 
-  // Payment: ['money', 'picpay', 'Credit card', 'Debit card',],
-  */}
                         <ContainerInput>
                             <FontAwesome name="user" size={20} color={colors.orange} />
                             <Input placeholder="Nome"
@@ -87,19 +91,60 @@ const AccountEdit = ({ navigation, route }) => {
                                 onChangeText={PhoneNumber => setPhoneNumber(Number(PhoneNumber))}
                             />
                         </ContainerInput>
+
                         <ContainerInput>
-                            <FontAwesome name="key" size={20} color={colors.orange} />
-                            <Input placeholder="Senha"
-                                secureTextEntry
-                                type="password"
-                                required
-                                name="password"
-                                value={password}
-                                onChangeText={password => setPassaword(password)}
+                            <FontAwesome name="map-marker" size={20} color={colors.orange} />
+                            <Input placeholder="Estado"
+                                type="text"
+                                value={state}
+                                onChangeText={state => setState(state)}
+                            />
+                        </ContainerInput>
+                        <ContainerInput>
+                            <FontAwesome name="map-marker" size={20} color={colors.orange} />
+                            <Input placeholder="Cidade"
+                                type="text"
+                                value={city}
+                                onChangeText={city => setCity(city)}
                             />
                         </ContainerInput>
 
-                        <Buttom onPress={() => store({ name, phoneNumber, password })}>
+                        <ContainerInput>
+                            <FontAwesome name="map-marker" size={20} color={colors.orange} />
+                            <Input placeholder="Bairro"
+                                type="text"
+                                value={neighborhood}
+                                onChangeText={neighborhood => setNeighborhood(neighborhood)}
+                            />
+                        </ContainerInput>
+                        <ContainerInput>
+                            <FontAwesome name="map-marker" size={20} color={colors.orange} />
+                            <Input placeholder="Número"
+                                type="text"
+                                value={number}
+                                onChangeText={number => setNumber(Number(number))}
+                            />
+                        </ContainerInput>
+
+                        <ContainerPayment>
+                            <ButtomPayment onPress={() => { setPayment('money'); setActivePayment('money'); }}>
+                                <FontAwesome color={activePayment === 'money' ? colors.orange : colors.darkgray} size={22} name="money" />
+                                <Text fontSize={12}>money</Text>
+                            </ButtomPayment>
+                            <ButtomPayment onPress={() => { setPayment('picpay'); setActivePayment('picpay'); }}>
+                                <FontAwesome color={activePayment === 'picpay' ? colors.orange : colors.darkgray} size={22} name="vcard" />
+                                <Text fontSize={12}>picpay</Text>
+                            </ButtomPayment>
+                            <ButtomPayment onPress={() => { setPayment('Credit card'); setActivePayment('Credit card'); }}>
+                                <FontAwesome color={activePayment === 'Credit card' ? colors.orange : colors.darkgray} size={22} name="cc-mastercard" />
+                                <Text fontSize={12}>Credit</Text>
+                            </ButtomPayment>
+                            <ButtomPayment onPress={() => { setPayment('Debit card'); setActivePayment('Debit card'); }}>
+                                <FontAwesome color={activePayment === 'Debit card' ? colors.orange : colors.darkgray} size={22} name="credit-card" />
+                                <Text fontSize={12}>Debit</Text>
+                            </ButtomPayment>
+                        </ContainerPayment>
+                        <Buttom onPress={() => store({ name, phoneNumber, state, city, neighborhood, number, payment })}>
                             <Text fontFamily="Lobster" color={colors.white} fontSize={18}>
                                 Atualizar
                         </Text>

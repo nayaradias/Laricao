@@ -36,7 +36,7 @@ const RequestsDetails = ({ navigation, route }) => {
         <Title fontWeight={500} color={colors.gray}>
           {request?.Name}
         </Title>
-        <Text color={colors.lightgray}>
+        <Text>
           {moment(request?.updatedAt).format('DD MMM YYYY h:mm')}
         </Text>
       </CardHeader>
@@ -61,9 +61,9 @@ const RequestsDetails = ({ navigation, route }) => {
           request?.Options?.map((option) => (
             <>
               <ContainerInfo>
-                <Text color={colors.lightgray}>
+                <Text>
                   {option?.Name}
-                  <Text color={colors.lightgray} marginLeft={5}>
+                  <Text marginLeft={5}>
                     R${option?.Price}
                   </Text>
                 </Text>

@@ -37,13 +37,20 @@ const Account = ({ navigation }) => {
     useEffect(() => {
         getUser();
     }, []);
-    console.log('GetData user:',user);
+    console.log('GetData user:', user);
     return (
         <Container >
             <Background>
                 <Circle />
                 <ProfileContent>
-                    <Avatar source={{ uri: "http://localhost:3001/" + user?.UrlPhoto }} />
+                    {
+                        user?.UrlPhoto ? (
+                            <Avatar source={{ uri: "http://localhost:3001/" + user?.UrlPhoto }} />
+                        ) : (
+                                <FontAwesome name="user" size={50} color={colors.white} />
+                            )
+                    }
+
                     <Title color={colors.white} fontWeight="bold">{user?.Name}</Title>
                     <Text color={colors.white} fontSize={12}>{user?.Email}</Text>
                 </ProfileContent>
@@ -53,33 +60,33 @@ const Account = ({ navigation }) => {
 
                     <ContentMenu>
                         <Text fontFamily="Lobster">Endereço</Text>
-                        <FontAwesome size={22} color={colors.orange} name='chevron-right' />
+                        <FontAwesome size={20} color={colors.orange} name='chevron-right' />
                     </ContentMenu>
 
                     <ContentMenu onPress={() => { logout(); navigation.navigate('Bag') }}>
                         <Text fontFamily="Lobster">Pagamento</Text>
-                        <FontAwesome size={22} color={colors.orange} name='chevron-right' />
+                        <FontAwesome size={20} color={colors.orange} name='chevron-right' />
                     </ContentMenu>
 
                     <ContentMenu onPress={() => { logout(); navigation.navigate('Requests') }}>
                         <Text fontFamily="Lobster">Pedidos</Text>
-                        <FontAwesome size={24} color={colors.orange} name='chevron-right' />
+                        <FontAwesome size={20} color={colors.orange} name='chevron-right' />
                     </ContentMenu>
 
                     <ContentMenu onPress={() => { logout(); navigation.navigate('Favorites') }}>
                         <Text fontFamily="Lobster">Favoritos</Text>
-                        <FontAwesome size={24} color={colors.orange} name='chevron-right' />
+                        <FontAwesome size={20} color={colors.orange} name='chevron-right' />
                     </ContentMenu>
 
                     <ContentMenu onPress={() => { logout(); navigation.navigate('Menu') }}>
                         <Text fontFamily="Lobster">Ofertas</Text>
-                        <FontAwesome size={24} color={colors.orange} name='chevron-right' />
+                        <FontAwesome size={20} color={colors.orange} name='chevron-right' />
                     </ContentMenu>
 
                     <Title fontFamily="Lobster">Mais</Title>
                     <ContentFooter marginTop={10} onPress={() => navigation.navigate('Account Details', { user })}>
                         <FontAwesome style={{ marginLeft: 3 }} size={24} color={colors.orange} name='info' />
-                        <Text marginLeft={22}>Informações</Text>
+                        <Text marginLeft={20}>Informações</Text>
                     </ContentFooter>
 
                     <ContentFooter onPress={() => { logout(); navigation.navigate('SignIn') }}>

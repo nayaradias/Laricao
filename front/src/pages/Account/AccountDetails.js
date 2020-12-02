@@ -29,13 +29,13 @@ const AccountDetails = ({ navigation, route }) => {
                 </ContentMenu>
 
                 <ContentMenu align="flex-start" justify="flex-start">
-                    <Title marginTop={2}>Nome: <Text>{user?.Name}</Text></Title>
-                    <Title marginTop={2}>Email: <Text>{user?.Email}</Text></Title>
-                    <Title marginTop={2}>Telefone: <Text>{user?.PhoneNumber}</Text></Title>
-                    <Title marginTop={2}>Cidade: <Text>{user?.Address?.City}</Text></Title>
-                    <Title marginTop={2}>Bairro: <Text>{user?.Address?.Neighborhood}, {user?.Address?.State}, n° {user?.Address?.Number}</Text></Title>
-                    <Title marginTop={2}>Tipo de Pagamento: <Text>{user?.Payment}</Text></Title>
-                    <Title marginTop={2}>Última Atualização: <Text>{moment(user?.updateAt).format('DD MMM YYYY h:mm')}</Text></Title>
+                    <Title fontSize={16} marginTop={2}>Nome: <Text>{user?.Name}</Text></Title>
+                    <Title fontSize={16} marginTop={2}>Email: <Text>{user?.Email}</Text></Title>
+                    <Title fontSize={16} marginTop={2}>Telefone: <Text>{user?.PhoneNumber}</Text></Title>
+                    <Title fontSize={16} marginTop={2}>Cidade: <Text>{user?.Address?.City}</Text></Title>
+                    <Title fontSize={16} marginTop={2}>Bairro: <Text>{user?.Address?.Neighborhood}, {user?.Address?.State}, n° {user?.Address?.Number}</Text></Title>
+                    <Title fontSize={16} marginTop={2}>Tipo de Pagamento: <Text>{user?.Payment}</Text></Title>
+                    <Title fontSize={16} marginTop={2}>Última Atualização: <Text>{moment(user?.updateAt).format('DD MMM YYYY h:mm')}</Text></Title>
                 </ContentMenu>
             </Content>
         </Container>

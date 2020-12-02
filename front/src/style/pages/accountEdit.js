@@ -50,3 +50,24 @@ export const Buttom = styled.TouchableOpacity`
 
 
 
+export const ContainerPayment = styled.View`
+  justify-content: space-between;
+  align-items: center;
+  flex-direction:row;
+
+  width: 100%;
+  padding: 15px;
+  margin-top: 25px;
+  background-color: ${colors.transparent};
+`;
+
+export const ButtomPayment = styled.TouchableOpacity`
+  justify-content: center;
+  align-items: center;
+  
+  padding: 10px;
+  background-color: ${colors.transparent};
+`;
+
+
+

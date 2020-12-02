@@ -30,19 +30,19 @@ const CompanyDetails = ({ navigation, route }) => {
                     <Title fontWeight={500} color={colors.gray} >
                         {company?.Name}
                     </Title>
-                    <Text color={colors.lightgray}>
+                    <Text>
                         {company?.Email}
                     </Text>
-                    <Text color={colors.lightgray} marginTop={10}>
+                    <Text marginTop={10}>
                         {company?.PhoneNumber}
                     </Text>
-                    <Text color={colors.lightgray}>
+                    <Text>
                         {company?.WorkHoursStart} - {company?.WorkHoursEnd}
                     </Text>
-                    <Text color={colors.lightgray}>
+                    <Text>
                         {moment(company?.createdAt).format('DD MMM YYYY h:mm')}
                     </Text>
-                    <Text color={colors.lightgray} textAlign="center">
+                    <Text textAlign="center">
                         {company?.Address}
                     </Text>
                 </ContainerText>
