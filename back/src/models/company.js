@@ -39,6 +39,7 @@ const CompanySchema = new mongoose.Schema(
     },
     Status: {
       type: String,
+      enum:['Aberto', 'Fechado',],
       required: false,
     },
     UrlPhoto: {

@@ -8,7 +8,7 @@ const FoodSchema = new mongoose.Schema(
     },
     Description: {
       type: String,
-      required:false
+      required: false
     },
     Price: {
       type: Number,
@@ -18,11 +18,22 @@ const FoodSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Company',
     },
-
+    Category: {
+      type: String,
+      enum: ['Burger', 'Pizza', 'Japonesa', 'Churrasco', 'Outros',]
+    },
+    Unity: { type: String, required: false },
     UrlPhoto: {
       type: String,
       required: false,
     },
+    Options: [
+      {
+        Name: { type: String, required: false },
+        Description: { type: String, required: false },
+        Price: { type: Number, required: false },
+      }
+    ]
   },
   {
     timestamps: true,
@@ -30,3 +41,4 @@ const FoodSchema = new mongoose.Schema(
 );
 
 mongoose.model('Food', FoodSchema);
+// module.exports = mongoose.model('Food', FoodSchema);

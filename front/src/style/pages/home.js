@@ -23,6 +23,7 @@ export const Buttom = styled.TouchableOpacity`
   border-radius:30px;
   height: ${props => props.height || 30}px;
   background-color:${colors.orange};
+  /* background-image:linear-gradient(to right #ffa600, #ffbc00, #ffd200, #fce800 ); */
 
 `;
 

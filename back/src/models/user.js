@@ -23,35 +23,55 @@ const UserSchema = new mongoose.Schema(
       required: false,
     },
     Address: {
-      type: String,
-      required: false,
+      State: { type: String, required: false },
+      City: { type: String, required: false },
+      Neighborhood: { type: String, required: false },
+      Number: { type: Number, required: false }
     },
     Payment: {
-      type: String, //(money, picpay)
+      type: String,
+      enum: ['money', 'picpay', 'Credit card', 'Debit card',],
       required: false,
     },
     UrlPhoto: {
       type: String,
       required: false,
     },
+    Favorites: [String],
+    Requests: [
+      {
+        Id: { type: String, required: false },
+        Name: { type: String, required: false },
+        Unity: { type: String, required: false },
+        Price: { type: Number, required: false },
+        Date: { type: Date, default: Date.now },//pode dar bo
+        Status: { type: String, enum: ['Pedido entregue', 'Em andamento',], required: false },
+        UrlPhoto: { type: String, required: false },
+        Company: { type: String, required: false },
+      }
+    ],
+    Bag: [
+      {
+        Id: { type: String, required: false },
+        Name: { type: String, required: false },
+        Unity: { type: String, required: false },
+        Price: { type: Number, required: false },
+        UrlPhoto: { type: String, required: false },
+      }
+    ]
   },
   {
     timestamps: true,
   }
 );
 
-// UserSchema.path('Email').validate((val) => {
-//   emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-//   return emailRegex.test(val);
-// }, "E-mail inválido.");
-
 UserSchema.pre('save', function (next) {
   let user = this;
   if (!user.isModified('Password'))
-      return next();
+    return next();
   bcrypt.hash(user.Password, 10, (err, bcrypt) => {
-      user.Password = bcrypt;
-      return next();
+    user.Password = bcrypt;
+    return next();
   });
 });
 

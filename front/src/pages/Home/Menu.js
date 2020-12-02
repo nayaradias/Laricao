@@ -1,10 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import colors from '../../style/global/colors';
 import { Title, Text } from '../../style/global/general';
 import {
     Container,
-    ContainerInput,
-    Input,
     Row,
     ContainerScrollView,
     Categories,
@@ -14,62 +12,81 @@ import {
     ContainerRecommended,
     RecommendedImage,
     RecommendedDescription,
-    ContainerButtons,
-    ButtonLess,
-    ButtonMore,
     ViewTransaparent,
 } from '../../style/pages/Menu';
-import FontAwesome from '@expo/vector-icons/FontAwesome';
+import api from '../../services/api';
 
 const dataCategories = [
     {
         id: 1,
-        title: 'Burger',
-        // image: require("../../assets/imagesFooter1.png")
+        Name: 'Burger',
+        image: require('../../assets/images/hamburguer.jpg')
     },
     {
         id: 2,
-        title: 'Pizza',
-        // image: require("../../assets/imagesFooter1.png")
+        Name: 'Pizza',
+        image: require('../../assets/images/pizza.jpg')
     },
     {
         id: 3,
-        title: 'Japonesa',
-        // image: require("../../assets/imagesFooter1.png")
+        Name: 'Japonesa',
+        image: require('../../assets/images/japonesa.jpg')
     },
     {
         id: 4,
-        title: 'Churrasco',
-        // image: require("../../assets/imagesFooter1.png")
-    }
-    ,
-    {
-        id: 5,
-        title: 'Teste',
-        // image: require("../../assets/imagesFooter1.png")
+        Name: 'Churrasco',
+        image: require('../../assets/images/churrasco.jpg')
     }
 ]
-const Menu = () => {
+
+const Menu = ({ navigation }) => {
+    const [popular, setPopular] = useState([]);
+    const [recommended, setRecommended] = useState([]);
+
+    const getPopular = async () => {
+        try {
+            const response = await api.get("company/listFavorites", {});
+            //console.log('company/listFavorites:', response);
+            setPopular(response.data.companies);
+        } catch (err) {
+            console.log("ERR Catch:", err);
+            // createToastError(err);
+        }
+    }
+    const getRecommended = async () => {
+        try {
+            const response = await api.get("food/list", {});
+            setRecommended(response.data.foods);
+            // console.log('food/list:', response);
+        } catch (err) {
+            console.log("ERR Catch:", err);
+        }
+    }
+
+    useEffect(() => {
+        getPopular();
+        getRecommended();
+    }, []);
 
     return (
-        <Container>
-            <ContainerInput>
-                <FontAwesome name="search" size={22} color={colors.orange} />
-                <Input placeholder="Buscar" />
-            </ContainerInput>
-
+        <Container
+            showsVerticalScrollIndicator={false}
+            showsHorizontalScrollIndicator={false}
+        >
             <Row style={{ justifyContent: "space-between" }}>
-                <Title marginLeft={20} fontWeight="bold" color={colors.grey} fontSize={16}>Explorar Categorias</Title>
-                <Text color={colors.lightgray} marginRight={20}>Ver todos</Text>
+                <Title marginLeft={20} marginTop={20} fontWeight="bold" color={colors.grey} fontSize={16}>Explorar Categorias</Title>
             </Row>
             <Row>
-                <ContainerScrollView horizontal>
+                <ContainerScrollView horizontal
+                    showsVerticalScrollIndicator={false}
+                    showsHorizontalScrollIndicator={false}
+                >
                     {
                         dataCategories.map(
-                            (category) => (
-                                <Categories key={category.id}>
-                                    <CategoriesImage source={require('../../assets/images/Footer1.png')} />
-                                    <Title fontWeight="bold" fontSize={16} color={colors.grey}>{category.title}</Title>
+                            (item) => (
+                                <Categories key={item.id}>
+                                    <CategoriesImage source={item.image} />
+                                    <Title fontWeight="bold" fontSize={16} color={colors.grey}>{item.Name}</Title>
                                 </Categories>
                             )
                         )
@@ -77,104 +94,51 @@ const Menu = () => {
                 </ContainerScrollView>
             </Row>
 
-            <Title marginLeft={20} fontWeight="bold" color={colors.grey} fontSize={16}>Populares</Title>
+            <Title marginLeft={20} marginTop={20} fontWeight="bold" color={colors.grey} fontSize={16}>Populares</Title>
             <Row>
-                <ContainerScrollView horizontal>
-                    <Popular>
-                        <PopularImage source={require('../../assets/images/Footer1.png')} />
-                    </Popular>
-                    <Popular>
-                        <PopularImage source={require('../../assets/images/Footer1.png')} />
-                    </Popular>
-                    <Popular>
-                        <PopularImage source={require('../../assets/images/Footer1.png')} />
-                    </Popular>
+                <ContainerScrollView horizontal
+                    showsVerticalScrollIndicator={false}
+                    showsHorizontalScrollIndicator={false}
+                >
+                    {
+                        popular?.map(
+                            (item) => (
+                                <Popular key={item._id} onPress={() => navigation.navigate('Company Details', { item })}>
+                                    <PopularImage
+                                        source={{
+                                            uri: "http://localhost:3001/" + item.UrlPhoto,
+                                        }}
+                                    />
+                                </Popular>
+                            )
+                        )
+                    }
                 </ContainerScrollView>
             </Row>
-            <Title marginLeft={20} fontWeight="bold" color={colors.grey} fontSize={16}>Recomendados</Title>
-            <ContainerScrollView horizontal>
-                
-                <ContainerRecommended>
-                    <RecommendedImage source={require('../../assets/images/Footer1.png')} />
-                    <RecommendedDescription>
-                        <ViewTransaparent>
-                            <Title fontSize={16} color={colors.gray}>Jumbo</Title>
-                            <Text fontSize={10} color={colors.lightgray}>Pão briche, burger especial 150g, muçarela, bacon, ovo..</Text>
-                            <Title fontSize={12} fontWeight="bold" color={colors.gray}>Buffalo´s Burger</Title>
-                        </ViewTransaparent>
+            <Title marginLeft={20} marginTop={20} fontWeight="bold" color={colors.grey} fontSize={16}>Recomendados</Title>
+            <ContainerScrollView horizontal
+                showsHorizontalScrollIndicator={false}>
+                {
+                    recommended.map(
+                        (item) => (
+                            <ContainerRecommended key={item._id} onPress={() => navigation.navigate('Bag', { food: item })}>
+                                <RecommendedImage
+                                    source={{
+                                        uri: "http://localhost:3001/" + item.UrlPhoto,
+                                    }} />
+                                <RecommendedDescription>
+                                    <ViewTransaparent>
+                                        <Title fontSize={16} color={colors.gray}>{item.Name}</Title>
+                                        <Text marginTop={5} fontSize={10} color={colors.lightgray}>{item.Description}</Text>
+                                        <Text marginTop={5} fontWeight="bold" color={colors.orange}>R$ {item.Price}</Text>
+                                        <Text marginTop={5} fontSize={12} fontWeight="bold" color={colors.gray}>{item.Company.Name}</Text>
+                                    </ViewTransaparent>
+                                </RecommendedDescription>
+                            </ContainerRecommended>
 
-                        <ContainerButtons>
-                            <ButtonLess>
-                                <FontAwesome name="minus" size={16} color={colors.orange} />
-                            </ButtonLess>
-                            <ViewTransaparent> 
-                                <Text fontWeight="bold" color={colors.orange}>1</Text>
-                            </ViewTransaparent>
-                            <ButtonMore>
-                                <FontAwesome name="plus" size={16} color={colors.white} />
-                            </ButtonMore>
-                            <ViewTransaparent> 
-                                <Text color={colors.yellow}>R$ 14,00</Text>
-                            </ViewTransaparent>
-                        </ContainerButtons>
-                    </RecommendedDescription>
-                </ContainerRecommended>
-
-
-              
-
-                <ContainerRecommended>
-                    <RecommendedImage source={require('../../assets/images/Footer1.png')} />
-                    <RecommendedDescription>
-                        <ViewTransaparent>
-                            <Title fontSize={16} color={colors.gray}>Jumbo 2</Title>
-                            <Text fontSize={10} color={colors.lightgray}>Pão briche, burger especial 150g, muçarela, bacon, ovo..</Text>
-                            <Title fontSize={12} fontWeight="bold" color={colors.gray}>Buffalo´s Burger</Title>
-                        </ViewTransaparent>
-
-                        <ContainerButtons>
-                            <ButtonLess>
-                                <FontAwesome name="minus" size={16} color={colors.orange} />
-                            </ButtonLess>
-                            <ViewTransaparent> 
-                                <Text fontWeight="bold" color={colors.orange}>1</Text>
-                            </ViewTransaparent>
-                            <ButtonMore>
-                                <FontAwesome name="plus" size={16} color={colors.white} />
-                            </ButtonMore>
-                            <ViewTransaparent> 
-                                <Text color={colors.yellow}>R$ 14,00</Text>
-                            </ViewTransaparent>
-                        </ContainerButtons>
-                    </RecommendedDescription>
-                </ContainerRecommended>
-
-
-                <ContainerRecommended>
-                    <RecommendedImage source={require('../../assets/images/Footer1.png')} />
-                    <RecommendedDescription>
-                        <ViewTransaparent>
-                            <Title fontSize={16} color={colors.gray}>Jumbo 3</Title>
-                            <Text fontSize={10} color={colors.lightgray}>Pão briche, burger especial 150g, muçarela, bacon, ovo..</Text>
-                            <Title fontSize={12} fontWeight="bold" color={colors.gray}>Buffalo´s Burger</Title>
-                        </ViewTransaparent>
-
-                        <ContainerButtons>
-                            <ButtonLess>
-                                <FontAwesome name="minus" size={16} color={colors.orange} />
-                            </ButtonLess>
-                            <ViewTransaparent> 
-                                <Text fontWeight="bold" color={colors.orange}>1</Text>
-                            </ViewTransaparent>
-                            <ButtonMore>
-                                <FontAwesome name="plus" size={16} color={colors.white} />
-                            </ButtonMore>
-                            <ViewTransaparent> 
-                                <Text color={colors.yellow}>R$ 14,00</Text>
-                            </ViewTransaparent>
-                        </ContainerButtons>
-                    </RecommendedDescription>
-                </ContainerRecommended>
+                        )
+                    )
+                }
             </ContainerScrollView>
         </Container>
     );

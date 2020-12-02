@@ -1,6 +1,5 @@
 import axios from 'axios';
-import { NativeModules } from "react-native";
-import { getToken, logout } from './auth';
+import { getData, logout } from './auth';
 
 const api = axios.create({
   baseURL: 'http://localhost:3001/api/',
@@ -8,13 +7,17 @@ const api = axios.create({
 
 
 api.interceptors.request.use(async (config) => {
-  const token = getToken();
+  const token = getData("@token");
   const headers = { ...config.headers };
+  // console.log("Token:", token);
+  // console.log("headers:", headers);
+  //x-access-token
   if (token) headers.Authorization = `Bearer ${token}`;
+  // if (token) headers.Authorization = `Bearer ${token}`;
   config.validateStatus = (status) => {
+  console.log("Status:", status);
     if (status === 401) {
-      logout();
-      NativeModules.DevSettings.reload();
+      //logout();
     } else {
       return status;
     }

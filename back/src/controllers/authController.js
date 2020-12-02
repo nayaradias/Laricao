@@ -1,8 +1,11 @@
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
+const Company = mongoose.model("Company");
+
+
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-// const { Store } = require('tough-cookie');
+
 const createUserToken = (UserId) => {
   return jwt.sign({
     id: UserId
@@ -11,7 +14,6 @@ const createUserToken = (UserId) => {
 
 module.exports = {
   async store(req, res) {
-    console.log(req.body);
     try {
       const user = await User.create(req.body);
       user.Password = undefined;
@@ -66,5 +68,78 @@ module.exports = {
         erro: err
       })
     }
+  },
+  async list(req, res) {
+    try {
+      const users = await User.find({});
+      return res.status(200).json({
+        users
+      });
+    } catch (err) {
+      return res.status(400).json({
+        erro: err,
+      });
+    }
+  },
+  async listFavorites(req, res) {//refazer
+    console.log(' res.locals.auth_data.id :', res.locals.auth_data.id);
+    try {
+      const userFavorites = await User.find({ _id: res.locals.auth_data.id }).select("Favorites");
+
+      //const company = await Company.find({ _id: { $in: userFavorites[0].Favorites } });
+
+      return res.status(200).json({
+        userFavorites
+      });
+    } catch (err) {
+      return res.status(400).json({
+        erro: err,
+      });
+    }
+  },
+  async editFavorites(req, res) {
+    try {
+
+      const user = await User.updateOne({ _id: res.locals.auth_data.id },
+        { $push: { Favorites: req.body.Favorites } }
+      );
+
+      return res.status(200).json({
+        user
+      });
+    } catch (err) {
+      return res.status(400).json({
+        erro: err,
+      });
+    }
+  },
+  async search(req, res) {
+
+    try {
+      const companies = await Company.find({ Name: { "$regex": `${req.body.Name}`, "$options": "i" } });
+      return res.status(200).json({
+        companies
+      });
+    }
+    catch (err) {
+      return res.status(400).json({
+        erro: err
+      })
+    }
+  },
+  async listRequests(req, res) {
+    try {
+     
+      const users = await User.find({ _id: req.body.id }); 
+      return res.status(200).json({
+        users
+      });
+      
+    } catch (err) {
+      return res.status(400).json({
+        erro: err,
+      });
+    }
   }
 };
+

@@ -20,6 +20,7 @@ export const Input = styled.TextInput`
     margin-right:8px;
     color:${colors.gray};
     width:92%;
+    padding:5px;
 `;
 export const Row = styled.View`
     flex-direction:row;
@@ -27,6 +28,7 @@ export const Row = styled.View`
 `;
 export const ContainerScrollView = styled.ScrollView`
     padding:10px;
+
 `;
 
 export const Categories = styled.TouchableOpacity`
@@ -52,7 +54,7 @@ export const PopularImage = styled.Image`
     width:130px;
     border-radius:10px;
 `;
-export const ContainerRecommended = styled.View`
+export const ContainerRecommended = styled.TouchableOpacity`
     width:170px;
     margin:10px ;
     box-shadow: 3px 3px 10px ${colors.lightgray}; 
@@ -96,5 +98,5 @@ export const ButtonMore = styled.TouchableOpacity`
     height:30px;
 `;
 export const ViewTransaparent = styled.View`
-  /* padding: 0 3px; */
+    padding: 3px 0px;
 `;
