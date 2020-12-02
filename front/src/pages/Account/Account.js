@@ -36,7 +36,7 @@ const Account = ({ navigation }) => {
     }
     useEffect(() => {
         getUser();
-    }, []);
+    }, [user]);
     console.log('GetData user:', user);
     return (
         <Container >
@@ -58,7 +58,7 @@ const Account = ({ navigation }) => {
                 <Content>
                     <Title fontFamily="Lobster">Minha Conta</Title>
 
-                    <ContentMenu>
+                    <ContentMenu onPress={() => navigation.navigate('Account Details', { user })}>
                         <Text fontFamily="Lobster">Endereço</Text>
                         <FontAwesome size={20} color={colors.orange} name='chevron-right' />
                     </ContentMenu>

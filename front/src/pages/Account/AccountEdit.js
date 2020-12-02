@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { NavigationActions, StackActions } from '@react-navigation/native';
+
 import {
     Container,
     Text,
@@ -20,6 +22,7 @@ import colors from "../../style/global/colors";
 import api from '../../services/api';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
+import { storeData } from '../../services/auth';
 const createTost = (message) => {
     toast.error(message, {
         position: toast.POSITION.BOTTOM_CENTER
@@ -55,15 +58,18 @@ const AccountEdit = ({ navigation, route }) => {
             Number: number,
             Payment: payment,
         }).then((res) => {
-            console.log('store on edit:', res.data);
-            res.data.user.ok !== 1 ? createTost("Erro na atualizaçao ") : navigation.navigate('Account');
+            if (!res.data.erro) {
+                storeData('user', res.data.user);
+                navigation.navigate('Account');
+            } else
+                createTost(res.data.erro);
         }).catch((error) => {
 
             createTost(error);
         });
 
     };
-    // console.log("activePayment:", activePayment);
+
     return (
         <>
             <ToastContainer />

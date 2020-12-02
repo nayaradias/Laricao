@@ -145,24 +145,32 @@ module.exports = {
     console.log('Edit:', req.body);
     try {
 
-      const user = await User.updateOne({ _id: req.body.id },
+      await User.findOneAndUpdate({ _id: req.body.id },
         {
           $set:
           {
             Name: req.body.Name,
             PhoneNumber: req.body.PhoneNumber,
-            State: req.body.State,
-            City: req.body.City,
-            Neighborhood: req.body.Neighborhood,
-            Number: req.body.Number
+            Payment: req.body.Payment,
+            Address: {
+              State: req.body.State,
+              City: req.body.City,
+              Neighborhood: req.body.Neighborhood,
+              Number: req.body.Number
+            }
           }
-        }
-      );
-      console.log(user);
+        }, function (err, user) {
+          if (!err) {
+            return res.status(200).json({
+              user
+            });
 
-      return res.status(200).json({
-        user
-      });
+          }
+          return res.status(500).json({
+            erro: err,
+          });
+        });
+
     } catch (err) {
       return res.status(400).json({
         erro: err,
